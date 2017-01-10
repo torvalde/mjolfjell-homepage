@@ -36,6 +36,7 @@
       height: 300px;
       padding: 20px;
       text-align: center;
+      margin-top: -90px;
     }
     .contact p, .contact div {
       text-align: left;
@@ -64,9 +65,12 @@
       height: 300px;
     }
     section {
-      overflow: hidden;
+      overflow: auto;
       padding: 0 20px;
       margin: 20px 0 80px 0;
+    }
+    section.top {
+      overflow: visible;
     }
     .location {
       float: left;
@@ -99,6 +103,35 @@
       margin-top: 40px;
       font-size: 38px;
     }
+    .select_days .visitors select {
+      background: transparent;
+      border: none;
+      color: white;
+      border-bottom: 1px solid white;
+      border-radius: 0;
+      -webkit-appearance: none;
+      padding-right: 30px;
+    }
+    .select_days .visitors .select-container {
+      position: relative;
+      display: inline-block;
+    }
+    .select_days .visitors .select-container:after {
+      content: '';
+      position: absolute;
+      top: 24px;
+      right: 6px;
+      width: 0;
+      height: 0;
+      border-style: solid;
+      border-width: 13px 8px 0 8px;
+      border-color: white transparent transparent transparent;
+    }
+    .select_days .visitors select:focus {
+      outline: none;
+      border-bottom: 1px solid lightskyblue;
+    }
+
     .select_days select {
 
     }
@@ -216,14 +249,14 @@
 </head>
 <body>
   <div class="first"></div>
-  <section>
-    <div class="contact">
-      <p>Ved Bergensbanen øvst i Raundalen der Rallarvegen mot Voss får fast dekke, finn ein Mjølfjell vandrarheim - som innfalsporten til Hardangervidda.</p>
-      <div>Telefon: <a href="tel:+4790557360">+4790557360</a></div>
-      <div>Epost: <a href="mailtop:post@mjolfjell.no">post@mjolfjell.no</a></div>
-      <a href="#start_order" class="mui-btn mui-btn--large mui-btn--primary">Bestill rom!</a>
-    </div>
-    <div class="mjolfjell"></div>
+  <section class="top">
+  <div class="contact">
+    <p>Ved Bergensbanen øvst i Raundalen der Rallarvegen mot Voss får fast dekke, finn ein Mjølfjell vandrarheim - som innfalsporten til Hardangervidda.</p>
+    <div>Telefon: <a href="tel:+4790557360">+4790557360</a></div>
+    <div>Epost: <a href="mailtop:post@mjolfjell.no">post@mjolfjell.no</a></div>
+    <a href="#start_order" class="mui-btn mui-btn--large mui-btn--primary">Bestill rom!</a>
+  </div>
+  <div class="mjolfjell"></div>
   </section>
   <section>
     <a href="https://www.google.com/maps/dir//Mjølfjell+Vandrerhjem,+voss/" target="_blank" class="location"><img src="https://maps.googleapis.com/maps/api/staticmap?center=Mjølfjell+Vandrerhjem,+voss&zoom=8&scale=2&size=300x300&maptype=roadmap&key=AIzaSyCkMf4_0AcLhCN4Sr4qeP2pvCutK0JN3Hk&format=png&visual_refresh=true&markers=size:mid%7Ccolor:0xff0000%7Clabel:1%7C60.6868453,6.9307285" alt="Google Map of Mjølfjell Vandrerhjem, voss"></a>
@@ -236,42 +269,47 @@
   </section>
   <section class="select_days" id="start_order">
     <img src="range.png">
+
     <div class="visitors">
-      <select name="adultCount">
-        <option value="0">Ingen voksene</option>
-        <option value="1">En voksen</option>
-        <option value="2" selected>2 voksne</option>
-        <option value="3">3 voksne</option>
-        <option value="4">4 voksne</option>
-        <option value="5">5 voksne</option>
-        <option value="6">6 voksne</option>
-        <option value="7">7 voksne</option>
-        <option value="8">8 voksne</option>
-      </select>
-      <select>
-        <option value="0">Ingen barn</option>
-        <option value="1">Ett barn</option>
-        <option value="2">2 barn</option>
-        <option value="3">3 barn</option>
-        <option value="4">4 barn</option>
-        <option value="5">5 barn</option>
-        <option value="6">6 barn</option>
-        <option value="7">7 barn</option>
-        <option value="8">8 barn</option>
-      </select>
+      <div class="select-container">
+        <select name="adultCount">
+          <option value="0">Ingen voksene</option>
+          <option value="1">En voksen</option>
+          <option value="2" selected>2 voksne</option>
+          <option value="3">3 voksne</option>
+          <option value="4">4 voksne</option>
+          <option value="5">5 voksne</option>
+          <option value="6">6 voksne</option>
+          <option value="7">7 voksne</option>
+          <option value="8">8 voksne</option>
+        </select>
+    </div>
+      <div class="select-container">
+        <select>
+          <option value="0">Ingen barn</option>
+          <option value="1">Ett barn</option>
+          <option value="2">2 barn</option>
+          <option value="3">3 barn</option>
+          <option value="4">4 barn</option>
+          <option value="5">5 barn</option>
+          <option value="6">6 barn</option>
+          <option value="7">7 barn</option>
+          <option value="8">8 barn</option>
+        </select>
+    </div>
     </div>
   </section>
   <section class="rooms">
     <h2>Våre rom:</h2>
     <div class="selectable room">
-      <input type="radio" name="roomType" id="dormBed" value="dormBed"/>
+    <input type="radio" name="roomType" id="dormBed" value="dormBed"/>
       <label for="dormBed" style="background:url(room.jpg) center center no-repeat;background-size: cover;">
-        <div class="price">100 kr per dag</div>
-        <div class="description">
-          <h3>Seng på firemannsrom</h3>
+      <div class="price">100 kr per dag</div>
+      <div class="description">
+        <h3>Seng på firemannsrom</h3>
 
-        </div>
-      </label>
+      </div>
+    </label>
     </div>
     <div class="selectable room">
       <input type="radio" name="roomType" id="familyRoom" value="familyRoom"/>
