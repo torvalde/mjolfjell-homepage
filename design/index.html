@@ -36,6 +36,7 @@
       height: 300px;
       padding: 20px;
       text-align: center;
+      margin-top: -90px;
     }
     .contact p, .contact div {
       text-align: left;
@@ -64,9 +65,12 @@
       height: 300px;
     }
     section {
-      overflow: hidden;
+      overflow: auto;
       padding: 0 20px;
       margin: 20px 0 80px 0;
+    }
+    section.top {
+      overflow: visible;
     }
     .location {
       float: left;
@@ -216,7 +220,7 @@
 </head>
 <body>
   <div class="first"></div>
-  <section>
+  <section class="top">
   <div class="contact">
     <p>Ved Bergensbanen øvst i Raundalen der Rallarvegen mot Voss får fast dekke, finn ein Mjølfjell vandrarheim - som innfalsporten til Hardangervidda.</p>
     <div>Telefon: <a href="tel:+4790557360">+4790557360</a></div>
