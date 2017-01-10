@@ -103,6 +103,35 @@
       margin-top: 40px;
       font-size: 38px;
     }
+    .select_days .visitors select {
+      background: transparent;
+      border: none;
+      color: white;
+      border-bottom: 1px solid white;
+      border-radius: 0;
+      -webkit-appearance: none;
+      padding-right: 30px;
+    }
+    .select_days .visitors .select-container {
+      position: relative;
+      display: inline-block;
+    }
+    .select_days .visitors .select-container:after {
+      content: '';
+      position: absolute;
+      top: 24px;
+      right: 6px;
+      width: 0;
+      height: 0;
+      border-style: solid;
+      border-width: 13px 8px 0 8px;
+      border-color: white transparent transparent transparent;
+    }
+    .select_days .visitors select:focus {
+      outline: none;
+      border-bottom: 1px solid lightskyblue;
+    }
+
     .select_days select {
 
     }
@@ -240,7 +269,9 @@
   </section>
   <section class="select_days" id="start_order">
     <img src="range.png">
+
     <div class="visitors">
+      <div class="select-container">
         <select name="adultCount">
           <option value="0">Ingen voksene</option>
           <option value="1">En voksen</option>
@@ -252,6 +283,8 @@
           <option value="7">7 voksne</option>
           <option value="8">8 voksne</option>
         </select>
+    </div>
+      <div class="select-container">
         <select>
           <option value="0">Ingen barn</option>
           <option value="1">Ett barn</option>
@@ -263,6 +296,7 @@
           <option value="7">7 barn</option>
           <option value="8">8 barn</option>
         </select>
+    </div>
     </div>
   </section>
   <section class="rooms">
