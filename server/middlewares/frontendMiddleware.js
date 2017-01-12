@@ -10,6 +10,7 @@ const addDevMiddlewares = (app, webpackConfig) => {
   const webpackDevMiddleware = require('webpack-dev-middleware');
   const webpackHotMiddleware = require('webpack-hot-middleware');
   const compiler = webpack(webpackConfig);
+  compiler.apply(new webpack.ContextReplacementPlugin(/\.\/locale$/, null, false, /js$/));
   const middleware = webpackDevMiddleware(compiler, {
     noInfo: true,
     publicPath: webpackConfig.output.publicPath,

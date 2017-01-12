@@ -12,6 +12,7 @@ module.exports = (options) => ({
     publicPath: '/',
   }, options.output), // Merge with env dependent settings
   module: {
+    noParse: /moment\.js/,
     loaders: [{
       test: /\.js$/, // Transform all .js files required somewhere with Babel
       loader: 'babel',
@@ -64,6 +65,9 @@ module.exports = (options) => ({
   ]),
   resolve: {
     modules: ['app', 'node_modules'],
+    alias: {
+      moment$: 'moment/moment.js',
+    },
     extensions: [
       '.js',
       '.jsx',
