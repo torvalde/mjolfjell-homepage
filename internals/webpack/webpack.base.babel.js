@@ -27,8 +27,15 @@ module.exports = (options) => ({
       test: /\.css$/,
       include: /node_modules/,
       loaders: ['style-loader', 'css-loader'],
+    },{
+      test: /\.inline.svg$/,
+      loader: 'svg-sprite'
     }, {
-      test: /\.(eot|svg|ttf|woff|woff2)$/,
+      test: /\.(svg)$/,
+      exclude: /\.inline.svg$/,
+      loader: 'file-loader',
+    }, {
+      test: /\.(eot|ttf|woff|woff2)$/,
       loader: 'file-loader',
     }, {
       test: /\.(jpg|png|gif)$/,
@@ -36,7 +43,7 @@ module.exports = (options) => ({
         'file-loader',
         'image-webpack?{progressive:true, optimizationLevel: 7, interlaced: false, pngquant:{quality: "65-90", speed: 4}}',
       ],
-    }, {
+    },{
       test: /\.html$/,
       loader: 'html-loader',
     }, {

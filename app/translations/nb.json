@@ -1,0 +1,15 @@
+{
+  "app.components.NotFoundPage.header": "This is NotFoundPage component !",
+  "app.components.Order.title": "Din ordre",
+  "app.components.PersonSelector.adult": "{persons, plural, =0 {ingen voksne} one {one adult} other {# voksne}}",
+  "app.components.PersonSelector.child": "{persons, plural, =0 {ingen barn} other {# barn}}",
+  "components.DormBed.order": "{guestCount, number} {guestCount, plural, one {seng} other {senger}} for {nightCount, number} {nightCount, plural, one {natt} other {netter}}",
+  "components.DormBed.priceDescription": "{price, number} kr pr natt",
+  "components.DormBed.title": "Seng i firemannsrom",
+  "components.FamilyRoom.order": "{guestCount, number} {guestCount, plural, one {gjest} other {gjester}} for {nightCount, number} {nightCount, plural, one {natt} other {netter}} i et privat rom",
+  "components.FamilyRoom.priceDescription": "{price, number} kr pr rom",
+  "components.FamilyRoom.title": "Familie rom",
+  "components.Towels.order": "{guestCount, number} {guestCount, plural, one {hånkle for 1 gjest} other {hånkler for # gjester}}",
+  "components.Towels.priceDescription": "{price, number} kr",
+  "components.Towels.title": "Hånkle"
+}

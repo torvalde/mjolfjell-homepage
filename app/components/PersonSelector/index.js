@@ -27,12 +27,13 @@ const Selector = styled.select`
 
 function PersonSelector(props) {
   let options = []; // [...Array(props.max).keys()].map(v => start+v);
+  let person = props.child?messages.child:messages.adult;
   for (let persons = props.min; persons < props.max; persons++) {
-    options.push('<option value={persons}><FormattedMessage {...messages.adult} values={{persons}}/></option>');
+    options.push(<option value={persons} key={persons}><FormattedMessage {...person} values={{persons}}/></option>);
   }
   return (
     <Wrapper>
-      <Selector>
+      <Selector value={props.selected||0}>
         {options}
       </Selector>
       <DownArrow/>
@@ -49,7 +50,7 @@ PersonSelector.propTypes = {
   min: PropTypes.number,
   max: PropTypes.number,
   selected: PropTypes.number,
-  child: PropTypes.boolean,
+  child: PropTypes.bool,
   onChange: PropTypes.func
 };
 

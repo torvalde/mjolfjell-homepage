@@ -18,16 +18,21 @@ import mjolfjell from './MJØLFJELL.svg';
 import Button from 'muicss/lib/react/button';
 import { DateRange } from 'react-date-range';
 import PersonSelector from 'components/PersonSelector';
-import FrontPage from './FrontPage';
+import RoomSelector from 'components/RoomSelector';
+import ExtrasSelector from 'components/ExtrasSelector';
+import DormBed from 'components/DormBed';
+import FamilyRoom from 'components/FamilyRoom';
+import Towels from 'components/Towels';
 
-const Container = styled.div`
-    color: #2e2e2e;
-    font-size: 1.3em;
-`;
+
+import Order from 'components/Order';
+import FrontPage from './FrontPage';
+import moment from 'moment';
+import Product from 'components/Product';
 
 const TopSection = styled.div`
-padding: 0 20px;
-    margin: 20px 0 80px 0;
+  padding: 0 20px;
+  margin: 20px 0 80px 0;
 `;
 
 const Title = styled.div`
@@ -58,11 +63,7 @@ const CenteredDiv = styled.div`
   margin-top: 30px;
 `;
 
-const Section = styled.section`
-    overflow: auto;
-    padding: 0 20px;
-    margin: 20px 0 80px 0;
-`;
+
 
 const Location = styled.a`
     float: left;
@@ -98,14 +99,53 @@ const VisitorsContainer = styled.div`
     font-size: 38px;
 `;
 
+const VisitorInfo = styled.div`
+    font-size: 1.5rem;
+    font-weight: 300;
+    margin-top: 20px;
+    color: white;
+`;
+
+const Section = styled.section`
+    overflow: hidden;
+    padding: 0 20px;
+    margin: 20px 0 80px 0;
+    h2 {
+      font-weight: 400;
+      font-size: 24px;
+      line-height: 32px;
+    }
+`;
+
 export default class HomePage extends React.Component { // React.PureComponent { // eslint-disable-line react/prefer-stateless-function
-  handleSelect(date){
-    console.log(date); // Momentjs object
+  constructor(props) {
+    super(props);
+    let startDate, endDate;
+    if (moment().isoWeekday() <= 5) {
+      // then just give me this week's instance of that day
+      startDate = moment().startOf('day').add(1, 'weeks').isoWeekday(5);
+      endDate = moment().startOf('day').add(2, 'weeks').isoWeekday(0);
+    } else {
+      // otherwise, give me next week's instance of that day
+      startDate = moment().startOf('day').add(2, 'weeks').isoWeekday(5);
+      endDate = moment().startOf('day').add(3, 'weeks').isoWeekday(0);
+    }
+    this.state = {startDate, endDate, adult: 2, children: 0, nights: endDate.diff(startDate, 'days')};
   }
-  render() {
+  handleSelect = (date) => {
+    this.setState({startDate:date.startDate,endDate:date.endDate,nights:date.endDate.diff(date.startDate, 'days')});
+  };
+  setRoom = (room) => {
+    console.log(room);
+    this.setState({orderRoom: room});
+  };
+  setExtras = (extras) => {
+    console.log(extras);
+    this.setState({orderExtras: extras});
+  };
+  render = () => {
     return (
       <main>
-        <Container>
         <FrontPage/>
         <TopSection>
         <About>
@@ -134,14 +174,40 @@ export default class HomePage extends React.Component { // React.PureComponent {
             <DateRange
               onInit={this.handleSelect}
               onChange={this.handleSelect}
+              linkedCalendars={true}
+              minDate={moment()}
+              startDate={this.state.startDate}
+              endDate={this.state.endDate}
             />
             </DateRangeContainer>
             <VisitorsContainer>
-              <PersonSelector/>
-              <PersonSelector child={true}/>
+              <PersonSelector selected={this.state.adult}/>
+              <PersonSelector child={true} selected={this.state.child}/>
+              <VisitorInfo>
+                <FormattedMessage {...messages.visitorInfo}/>
+              </VisitorInfo>
             </VisitorsContainer>
           </OrderSection>
-        </Container>
+          <Section>
+            <h2>
+              <FormattedMessage {...messages.accomodation} />:
+            </h2>
+            <RoomSelector onChange={this.setRoom}>
+                <DormBed nightCount={this.state.nights} guestCount={(this.state.adult+this.state.children)}/>
+                <FamilyRoom nightCount={this.state.nights} guestCount={(this.state.adult+this.state.children)}/>
+            </RoomSelector>
+          </Section>
+          <Section>
+            <h2>
+              <FormattedMessage { ...messages.extras } />:
+            </h2>
+            <ExtrasSelector onChange={this.setExtras}>
+              <Towels nightCount={this.state.nights} guestCount={(this.state.adult+this.state.children)}/>
+            </ExtrasSelector>
+          </Section>
+          <Order room={this.state.orderRoom} extras={this.state.orderExtras}>
+
+          </Order>
       </main>
     );
   }
