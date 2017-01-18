@@ -26,6 +26,7 @@ const Wrapper = styled.div`
       max-width: 500px;
       margin: 50px auto;
       tr td:last-child {
+        min-width: 80px;
         text-align:right;
       }
       @media only screen and (max-width : 768px) {

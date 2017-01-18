@@ -24,6 +24,7 @@ import DormBed from 'components/DormBed';
 import FamilyRoom from 'components/FamilyRoom';
 import Towels from 'components/Towels';
 import Supper from 'components/Supper';
+import Transport from 'components/Transport';
 
 import twitter from './twitter.svg';
 import instagram from './instagram.svg';
@@ -209,7 +210,10 @@ list-style: none;
     padding: 0;
 `;
 
-export default class HomePage extends React.Component { // React.PureComponent { // eslint-disable-line react/prefer-stateless-function
+export default class HomePage extends React.Component {
+
+
+  // React.PureComponent { // eslint-disable-line react/prefer-stateless-function
   constructor(props) {
     super(props);
     let startDate, endDate;
@@ -227,6 +231,9 @@ export default class HomePage extends React.Component { // React.PureComponent {
   handleSelect = (date) => {
     this.setState({startDate:date.startDate,endDate:date.endDate,nights:date.endDate.diff(date.startDate, 'days')});
   };
+  scrollToOrder = () => {
+    document.getElementById('order').scrollIntoView();
+  };
   setRoom = (room) => {
     console.log(room);
     this.setState({orderRoom: room});
@@ -235,6 +242,10 @@ export default class HomePage extends React.Component { // React.PureComponent {
     console.log(extras);
     this.setState({orderExtras: extras});
   };
+  /*
+   <li><a href=""><img src={twitter}/></a></li>
+   <li><a href=""><img src={instagram}/></a></li>
+   */
   render = () => {
     return (
       <main>
@@ -244,7 +255,7 @@ export default class HomePage extends React.Component { // React.PureComponent {
           <p>Ved Bergensbanen øvst i Raundalen der Rallarvegen mot Voss får fast dekke, finn ein Mjølfjell ungdomsherberge - innfalsporten til Hardangervidda.</p>
           <div>Telefon: <Link href="tel:+4790557360">+4790557360</Link></div>
           <div>Epost: <Link href="mailtop:post@mjolfjell.no">post@mjolfjell.no</Link></div>
-          <CenteredDiv><Button size="large" color="primary" variant="raised">Bestill rom!</Button></CenteredDiv>
+          <CenteredDiv><Button size="large" color="primary" variant="raised" onClick={this.scrollToOrder}>Bestill rom!</Button></CenteredDiv>
         </About>
           <Title>
             <svg>
@@ -265,7 +276,7 @@ export default class HomePage extends React.Component { // React.PureComponent {
               </Paragraph>
             </LocationInfo>
           </Section>
-          <OrderSection>
+          <OrderSection id="order">
             <DateRangeContainer>
             <DateRange
               onInit={this.handleSelect}
@@ -311,6 +322,7 @@ export default class HomePage extends React.Component { // React.PureComponent {
             <ExtrasSelector onChange={this.setExtras}>
               <Towels nightCount={this.state.nights} guestCount={(this.state.adult+this.state.children)}/>
               <Supper nightCount={this.state.nights} guestCount={(this.state.adult+this.state.children)}/>
+              <Transport nightCount={this.state.nights} guestCount={(this.state.adult+this.state.children)}/>
             </ExtrasSelector>
           </ProductSection>
           <Order room={this.state.orderRoom} extras={this.state.orderExtras}>
@@ -318,9 +330,8 @@ export default class HomePage extends React.Component { // React.PureComponent {
           </Order>
         <Footer>
           <Social>
-            <li><a href=""><img src={twitter}/></a></li>
-            <li><a href=""><img src={instagram}/></a></li>
-            <li><a href=""><img src={facebook}/></a></li>
+
+            <li><a href="https://www.facebook.com/MjolfjellHostel" target="_blank"><img src={facebook}/></a></li>
           </Social>
           <Contact>
             <li>Mjølfjell vandrarheim</li>

@@ -10,6 +10,10 @@ export default defineMessages({
     id: 'components.DormBed.title',
     defaultMessage: 'Seng i firemannsrom',
   },
+  description: {
+    id: 'components.DormBed.description',
+    defaultMessage: 'inkluderer gla\'frokost',
+  },
   priceDescription: {
     id: 'components.DormBed.priceDescription',
     defaultMessage: '{price, number} kr pr natt',

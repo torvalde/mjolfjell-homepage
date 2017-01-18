@@ -8,7 +8,11 @@ import { defineMessages } from 'react-intl';
 export default defineMessages({
   title: {
     id: 'components.FamilyRoom.title',
-    defaultMessage: 'Familie rom',
+    defaultMessage: '4-mannsrom',
+  },
+  description: {
+    id: 'components.FamilyRoom.description',
+    defaultMessage: 'inkluderer gla\'frokost',
   },
   priceDescription: {
     id: 'components.FamilyRoom.priceDescription',

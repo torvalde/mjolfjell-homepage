@@ -16,8 +16,6 @@ export default defineMessages({
   },
   order: {
     id: 'components.Supper.order',
-    defaultMessage: `Ærnæringsrik kraftaftens med søt avslutning 
-    {guestCount, number} {guestCount, plural, one {for 1 gjest} other {for # gjester} i }
-    {nightCount, number} {nightCount, plural, one {1 natt} other {# netter}`,
+    defaultMessage: 'Ærnæringsrik kraftaftens med søt avslutning {guestCount, plural, one {for 1 gjest} other {for # gjester}} i {nightCount, plural, one {1 natt} other {# netter}}',
   },
 });
