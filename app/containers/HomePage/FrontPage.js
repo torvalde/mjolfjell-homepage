@@ -6,6 +6,9 @@ const FrontPage = styled.div`
   background-size: cover;
   width: 100%;
   height: calc(100vh - 180px);
+  @media only screen and (max-width : 768px) {
+    height: 160px;
+  }
 `;
 
 export default FrontPage;

@@ -14,7 +14,7 @@ export default defineMessages({
     id: 'app.components.Order.send',
     defaultMessage: `Send order`,
   },
-  navn: {
+  name: {
     id: 'app.components.Order.name',
     defaultMessage: `Navn`,
   },
@@ -25,5 +25,13 @@ export default defineMessages({
   phone: {
     id: 'app.components.Order.phone',
     defaultMessage: `Telefon`,
+  },
+  info: {
+    id: 'app.components.Order.info',
+    defaultMessage: 'Etter å ha motatt din bestilling vil vi kontakte deg for å avklare betaling. Alle prisene er i NOK.'
+  },
+  empty: {
+    id: 'app.components.Order.empty',
+    defaultMessage: 'Din bestilling er tom, velg overnatting fra seksjonen over.'
   }
 });

@@ -17,6 +17,12 @@ const Label = styled.div`
   &:hover div {
     display: block;
   }
+  @media only screen and (max-width : 768px) {
+    width: 100%;
+    margin-right: 0;
+        height: 0;
+    padding-bottom: 75%;
+  }
 `;
 
 const Price = styled.span`

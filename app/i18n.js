@@ -10,7 +10,7 @@ import { DEFAULT_LOCALE } from './containers/App/constants'; // eslint-disable-l
 import nbLocaleData from 'react-intl/locale-data/nb';
 
 export const appLocales = [
-  'nb'
+  'nb',
 ];
 
 import nbTranslationMessages from './translations/nb.json';
@@ -18,7 +18,7 @@ import nbTranslationMessages from './translations/nb.json';
 addLocaleData(nbLocaleData);
 
 export const formatTranslationMessages = (locale, messages) => {
-  const defaultFormattedMessages = locale !== DEFAULT_LOCALE ? formatTranslationMessages(DEFAULT_LOCALE, enTranslationMessages) : {};
+  const defaultFormattedMessages = locale !== DEFAULT_LOCALE ? formatTranslationMessages(DEFAULT_LOCALE, nbTranslationMessages) : {};
   const formattedMessages = {};
   const messageKeys = Object.keys(messages);
   for (const messageKey of messageKeys) {

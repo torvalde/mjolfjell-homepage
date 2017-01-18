@@ -8,7 +8,7 @@ const webpack = require('webpack');
 module.exports = (options) => ({
   entry: options.entry,
   output: Object.assign({ // Compile into js/build.js
-    path: path.resolve(process.cwd(), 'build'),
+    path: path.resolve(process.cwd(), 'docs'),
     publicPath: '/',
   }, options.output), // Merge with env dependent settings
   module: {
@@ -27,9 +27,9 @@ module.exports = (options) => ({
       test: /\.css$/,
       include: /node_modules/,
       loaders: ['style-loader', 'css-loader'],
-    },{
+    }, {
       test: /\.inline.svg$/,
-      loader: 'svg-sprite'
+      loader: 'svg-sprite',
     }, {
       test: /\.(svg)$/,
       exclude: /\.inline.svg$/,
@@ -43,7 +43,7 @@ module.exports = (options) => ({
         'file-loader',
         'image-webpack?{progressive:true, optimizationLevel: 7, interlaced: false, pngquant:{quality: "65-90", speed: 4}}',
       ],
-    },{
+    }, {
       test: /\.html$/,
       loader: 'html-loader',
     }, {

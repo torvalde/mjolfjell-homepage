@@ -16,6 +16,6 @@ export default defineMessages({
   },
   order: {
     id: 'components.Towels.order',
-    defaultMessage: `{guestCount, number} {guestCount, plural, one {hånkle for 1 gjest} other {hånkler for # gjester}}`
-  }
+    defaultMessage: '{guestCount, number} {guestCount, plural, one {hånkle for 1 gjest} other {hånkler for # gjester}}',
+  },
 });

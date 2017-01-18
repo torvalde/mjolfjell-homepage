@@ -32,7 +32,7 @@ class ExtrasSelector extends React.Component {
   render = () => {
     const clickableChildren = Children.map(this.props.children,
       (child) => React.cloneElement(child, {
-        onClick: this.onSelect, active: this.state.selected[child.props.value]
+        onClick: this.onSelect, active: this.state.selected[child.type.name]
       })
     );
 

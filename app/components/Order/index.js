@@ -14,6 +14,7 @@ const Wrapper = styled.div`
     width: 100%;
     text-align: left;
     padding: 40px;
+    position: relative;
     h2 {
       font-weight: 400;
       font-size: 24px;
@@ -21,18 +22,26 @@ const Wrapper = styled.div`
       text-align: center;
     }
     table {
-      width: 500px;
+      width: 100%;
+      max-width: 500px;
       margin: 50px auto;
       tr td:last-child {
         text-align:right;
       }
+      @media only screen and (max-width : 768px) {
+        max-width: none;
+      }
     }
     form {
-        width: 400px;
+        width: 100%;
+        max-width: 500px;
         margin: 0 auto;
         label {
           overflow-x:visible;
         }
+            @media only screen and (max-width : 768px) {
+                    max-width: none;
+            }
     }
 `;
 
@@ -47,10 +56,25 @@ const SummaryRow = styled.tr`
   }
 `;
 
-export default function Order(props) {
+const Info = styled.div`
+  font-size: 14px;
+  padding-top: 40px;
+  padding-bottom: 40px;
+`;
+
+export default function Order(props, context) {
+  let sendOrder = function () {
+    emailjs.send("default_service","template_oq3smkkp",{name: "James", notes: "Check this out!"})
+      .then(function(response) {
+        console.log("SUCCESS. status=%d, text=%s", response.status, response.text);
+      }, function(err) {
+        console.log("FAILED. error=", err);
+      });
+  };
+
   let rows = [];
 
-  var total = 0;
+  let total = 0;
 
   if (props.room) {
     total += props.room.total;
@@ -64,7 +88,14 @@ export default function Order(props) {
     });
   }
 
-  rows.push(<SummaryRow key="total"><td>Total</td><td>{total} kr</td></SummaryRow>);
+  if (total==0) {
+    rows.push(<tr><td style={{textAlign: 'left'}}><FormattedMessage {...messages.empty}/></td></tr>);
+  } else {
+    rows.push(<SummaryRow key="total">
+      <td>Total</td>
+      <td>{total} kr</td>
+    </SummaryRow>);
+  }
 
   return <Wrapper>
     <h2><FormattedMessage {...messages.title}/></h2>
@@ -74,11 +105,14 @@ export default function Order(props) {
       </tbody>
     </table>
     <form>
-      <Input label="Navn" floatingLabel={true} required={true} type="text"/>
-      <Input label="E-post" floatingLabel={true} required={true} type="email" />
-      <Input label="Telefon" floatingLabel={true} required={true} type="tel" />
+      <Input label={context.intl.formatMessage(messages.name)} floatingLabel={true} required={true} type="text"/>
+      <Input label={context.intl.formatMessage(messages.email)} floatingLabel={true} required={true} type="email" />
+      <Input label={context.intl.formatMessage(messages.phone)} floatingLabel={true} required={true} type="tel" />
+      <Info>
+        <FormattedMessage {...messages.info}/>
+      </Info>
       <Center>
-      <Button size="large" variant="raised"><FormattedMessage {...messages.send} /></Button>
+      <Button size="large" variant="raised" onClick={sendOrder}><FormattedMessage {...messages.send} /></Button>
       </Center>
     </form>
   </Wrapper>;
@@ -87,4 +121,8 @@ export default function Order(props) {
 Order.propTypes = {
   room: PropTypes.object,
   extras: PropTypes.array
+};
+
+Order.contextTypes = {
+  intl: React.PropTypes.object
 };
