@@ -131,7 +131,14 @@ const OrderSection = styled.section`
     text-align: center;
     background: orange;
     padding: 40px;
-    padding-top: 60px;
+    h2 {
+      margin:0;
+      margin-bottom: 30px;
+      padding:0;
+      color: white;
+      font-size: 5rem;
+      line-height: 150%;
+    }
 `;
 
 const DateRangeContainer = styled.div`
@@ -278,6 +285,7 @@ export default class HomePage extends React.Component {
             </LocationInfo>
           </Section>
           <OrderSection id="order">
+            <h2>Ditt opphold</h2>
             <DateRangeContainer>
             <DateRange
               onInit={this.handleSelect}
