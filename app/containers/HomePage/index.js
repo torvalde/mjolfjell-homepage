@@ -131,6 +131,7 @@ const OrderSection = styled.section`
     text-align: center;
     background: orange;
     padding: 40px;
+    padding-top: 60px;
 `;
 
 const DateRangeContainer = styled.div`

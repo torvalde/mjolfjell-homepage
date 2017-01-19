@@ -12,11 +12,13 @@ export default function Towels(props,context) {
   let priceDescription = context.intl.formatMessage(messages.priceDescription,{price:price});
   let order = context.intl.formatMessage(messages.order,{guestCount:props.guestCount});
   let title = context.intl.formatMessage(messages.title);
-  return <Product img={towel} value={Towels.name} totalPrice={calculatedPrice} price={priceDescription}
-                  title={title} description="" order={order} onClick={props.onClick} active={props.active}/>
+  let description = context.intl.formatMessage(messages.description);
+  return <Product img={towel} totalPrice={calculatedPrice} price={priceDescription} value={props.value}
+                  title={title} description={description} order={order} onClick={props.onClick} active={props.active}/>
 };
 
 Towels.propTypes = {
+  value: PropTypes.string,
   nightCount: PropTypes.number,
   guestCount: PropTypes.number,
   active: PropTypes.bool,

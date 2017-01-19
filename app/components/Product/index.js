@@ -38,14 +38,21 @@ const Price = styled.span`
 `;
 
 const Description = styled.div`
-    margin-top: 6px;
+    padding-top: 12px;
     font-size: 18px;
     line-height: 22px;
     margin-right: 30px;
+font-size: 1.5rem;
+  line-height: 22px;
+  margin: 0;
+  max-width: 320px;
+  @media only screen and (max-width : 768px) {
+      max-width: none;
+  }
 `;
 
 const DescriptionHeader = styled.div`
-  font-size: 18px;
+  font-size: 20px;
   line-height: 22px;
   margin: 0;
   font-weight: normal;
@@ -75,7 +82,6 @@ class Product extends React.Component {
       background: `url(${this.props.img}) center center no-repeat`,
       backgroundSize: 'cover'
     };
-
     return (
       <Wrapper>
         <Label style={labelStyle} onMouseOver={this.mouseOver} onMouseOut={this.mouseOut} onClick={this.onClick}>

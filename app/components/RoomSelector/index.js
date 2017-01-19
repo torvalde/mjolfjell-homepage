@@ -15,17 +15,19 @@ class RoomSelector extends React.Component {
     super(props);
     this.state = {};
   }
-  onSelect = (type, order, total) => {
-    if (this.state.selected != type) {
-      this.setState({selected: type});
+  onSelect = (value, order, total) => {
+    console.log(value);
+    if (this.state.selected != value) {
+      this.setState({selected: value});
       this.props.onChange({text: order, total});
     }
   };
   render = () => {
-    const clickableChildren = Children.map(this.props.children,
-      (child) => React.cloneElement(child, {
-          onClick: this.onSelect, active: child.type.name == this.state.selected
-        }));
+    const clickableChildren = React.Children.map(this.props.children, (child, i) => {
+      return React.cloneElement(child, {
+        value: i, title: 'test', onClick: this.onSelect, active: (i==this.state.selected)
+      });
+    });
 
     return <Wrapper>{clickableChildren}</Wrapper>;
   }

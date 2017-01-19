@@ -90,7 +90,7 @@ export default function Order(props, context) {
   }
 
   if (total==0) {
-    rows.push(<tr><td style={{textAlign: 'left'}}><FormattedMessage {...messages.empty}/></td></tr>);
+    rows.push(<tr key="empty"><td style={{textAlign: 'left'}}><FormattedMessage {...messages.empty}/></td></tr>);
   } else {
     rows.push(<SummaryRow key="total">
       <td>Total</td>

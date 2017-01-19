@@ -10,6 +10,10 @@ export default defineMessages({
     id: 'components.Towels.title',
     defaultMessage: 'Hånkle',
   },
+  description: {
+    id: 'components.Towels.description',
+    defaultMessage: '',
+  },
   priceDescription: {
     id: 'components.Towels.priceDescription',
     defaultMessage: '{price, number} kr',

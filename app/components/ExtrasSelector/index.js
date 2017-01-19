@@ -15,26 +15,26 @@ class ExtrasSelector extends React.Component {
     this.state = {selected:{}};
   }
 
-  onSelect = (value, order, total) => {
+  onSelect = (value, text, total) => {
     let newSelected = Object.assign({}, this.state.selected);
 
     if (!newSelected[value]) {
-      newSelected[value] = {value, text: order, total};
+      newSelected[value] = {value, text, total};
     } else {
       newSelected[value] = undefined;
     }
 
     this.setState({selected: newSelected});
 
-    this.props.onChange(Object.entries(newSelected).reduce((array, entry) => entry[1]?array.concat(entry[1]):array, []));
+    this.props.onChange(Object.values(newSelected).reduce((array, val) => val?array.concat(val):array, []));
   };
 
   render = () => {
-    const clickableChildren = Children.map(this.props.children,
-      (child) => React.cloneElement(child, {
-        onClick: this.onSelect, active: this.state.selected[child.type.name]
-      })
-    );
+    const clickableChildren = React.Children.map(this.props.children, (child, i) => {
+      return React.cloneElement(child, {
+        value: i, onClick: this.onSelect, active: (!!this.state.selected[i])
+      });
+    });
 
     return <Wrapper>{clickableChildren}</Wrapper>;
   }

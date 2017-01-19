@@ -10,6 +10,10 @@ export default defineMessages({
     id: 'components.Transport.title',
     defaultMessage: 'Henting på mjølfjell stasjon',
   },
+  description: {
+    id: 'components.Transport.description',
+    defaultMessage: '',
+  },
   priceDescription: {
     id: 'components.Transport.priceDescription',
     defaultMessage: '{price, number} kr',

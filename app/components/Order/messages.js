@@ -12,7 +12,7 @@ export default defineMessages({
   },
   send: {
     id: 'app.components.Order.send',
-    defaultMessage: `Send order`,
+    defaultMessage: `Send bestilling`,
   },
   name: {
     id: 'app.components.Order.name',

@@ -13,6 +13,7 @@ injectGlobal`
     color: #2e2e2e;
     background: #F1F7EE;
     font-size:18px;
+    font-weight: 300;
   }
 
   body.fontLoaded {

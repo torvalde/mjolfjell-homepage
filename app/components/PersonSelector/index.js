@@ -33,7 +33,7 @@ function PersonSelector(props) {
   }
   return (
     <Wrapper>
-      <Selector value={props.selected||0}>
+      <Selector defaultValue={props.selected||0}>
         {options}
       </Selector>
       <DownArrow/>

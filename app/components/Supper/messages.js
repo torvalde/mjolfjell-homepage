@@ -8,7 +8,11 @@ import { defineMessages } from 'react-intl';
 export default defineMessages({
   title: {
     id: 'components.Supper.title',
-    defaultMessage: 'Ærnæringsrik kraftaftens med søt avslutning',
+    defaultMessage: 'Ærnæringsrik kraftaftens',
+  },
+  description: {
+    id: 'components.Supper.description',
+    defaultMessage: 'med søt avslutning',
   },
   priceDescription: {
     id: 'components.Supper.priceDescription',
@@ -16,6 +20,6 @@ export default defineMessages({
   },
   order: {
     id: 'components.Supper.order',
-    defaultMessage: 'Ærnæringsrik kraftaftens med søt avslutning {guestCount, plural, one {for 1 gjest} other {for # gjester}} i {nightCount, plural, one {1 natt} other {# netter}}',
+    defaultMessage: 'Ærnæringsrik kraftaftens {guestCount, plural, one {for 1 gjest} other {for # gjester}} i {nightCount, plural, one {1 natt} other {# netter}}',
   },
 });
