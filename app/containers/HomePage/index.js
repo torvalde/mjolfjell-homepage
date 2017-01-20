@@ -260,8 +260,8 @@ export default class HomePage extends React.Component {
         <FrontPage/>
         <TopSection>
         <About>
-          <p>Ved Bergensbanen øvst i Raundalen der Rallarvegen mot Voss får fast dekke, finn ein Mjølfjell ungdomsherberge - innfalsporten til Hardangervidda.</p>
-          <div>Telefon: <Link href="tel:+4790557360">+4790557360</Link></div>
+          <p>Øvst i kaledonske Raundalen, blant tusser & troll, ligg Hardangerviddas nordre portal Mjølfjell Ungdomsherberge. Dette paradis paradoks gir sjeldne muligheter for fysisk, mental og åndelig adspredelse. </p>
+          <div>Telefon: <Link href="tel:+4746184070">461 84 070</Link></div>
           <div>Epost: <Link href="mailtop:post@mjolfjell.no">post@mjolfjell.no</Link></div>
           <CenteredDiv><Button size="large" color="primary" variant="raised" onClick={this.scrollToOrder}>Bestill rom!</Button></CenteredDiv>
         </About>
@@ -285,7 +285,7 @@ export default class HomePage extends React.Component {
             </LocationInfo>
           </Section>
           <OrderSection id="order">
-            <h2>Ditt opphold</h2>
+            <h2>Ditt opphold:</h2>
             <DateRangeContainer>
             <DateRange
               onInit={this.handleSelect}
@@ -345,7 +345,7 @@ export default class HomePage extends React.Component {
           <Contact>
             <li>Mjølfjell vandrarheim</li>
             <li>5700 Voss</li>
-            <li>Telefon: <a href="tel:+4790557360">+4790557360</a></li>
+            <li>Telefon: <a href="tel:+4746184070">461 84 070</a></li>
             <li>Epost: <a href="mailtop:post@mjolfjell.no">post@mjolfjell.no</a></li>
           </Contact>
         </Footer>
