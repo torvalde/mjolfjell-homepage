@@ -33,6 +33,8 @@ import facebook from './facebook.svg';
 import Order from 'components/Order';
 import FrontPage from './FrontPage';
 import moment from 'moment';
+import Image from './Image';
+
 
 const TopSection = styled.div`
   padding: 0 20px;
@@ -68,8 +70,8 @@ const Title = styled.div`
 const About = styled.div`
     background: #99AEBE;
     float: right;
-    width: 350px;
-    height: 350px;
+    width: 380px;
+    height: 380px;
     padding: 20px 30px;
     text-align: left;
     margin-top: -90px;
@@ -126,8 +128,7 @@ const Paragraph = styled.p`
 
 const OrderSection = styled.section`
     overflow: auto;
-    padding: 0 20px;
-    margin: 20px 0 160px 0;
+    margin: 0 0 160px 0;
     text-align: center;
     background: orange;
     padding: 40px;
@@ -184,6 +185,10 @@ const Section = styled.section`
     }
 `;
 
+const FullSection = styled.section`
+    margin: 20px 0 0 0;
+`;
+
 const ProductSection = styled(Section)`
       margin-bottom: 60px;
     
@@ -212,10 +217,15 @@ const Social = styled.ul`
 `;
 
 const Contact = styled.ul`
-list-style: none;
+  list-style: none;
     margin: 0;
     display: inline-block;
     padding: 0;
+`;
+
+const Copyright = styled(Link)`
+    margin-top: 20px;
+    display: block;
 `;
 
 export default class HomePage extends React.Component {
@@ -284,6 +294,9 @@ export default class HomePage extends React.Component {
               </Paragraph>
             </LocationInfo>
           </Section>
+          <FullSection>
+            <Image/>
+          </FullSection>
           <OrderSection id="order">
             <h2>Ditt opphold:</h2>
             <DateRangeContainer>
@@ -348,6 +361,8 @@ export default class HomePage extends React.Component {
             <li>Telefon: <a href="tel:+4746184070">461 84 070</a></li>
             <li>Epost: <a href="mailtop:post@mjolfjell.no">post@mjolfjell.no</a></li>
           </Contact>
+          <div style={{clear:'both'}}/>
+          <Copyright href="http://www.hoydalsvik.net/" target="_blank">Copyright for bildene på siden tilhører Odd Høydalsvik</Copyright>
         </Footer>
       </main>
     );

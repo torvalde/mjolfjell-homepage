@@ -77,6 +77,12 @@ class Product extends React.Component {
     this.props.onClick(this.props.value, this.props.order, this.props.totalPrice);
   };
 
+  componentDidUpdate = (prevProps) => {
+    if (this.props.value != prevProps.value || this.props.order != prevProps.order || this.props.totalPrice != prevProps.totalPrice) {
+      this.props.onClick(this.props.value, this.props.order, this.props.totalPrice);
+    }
+  };
+
   render = () => {
     let labelStyle = {
       background: `url(${this.props.img}) center center no-repeat`,
