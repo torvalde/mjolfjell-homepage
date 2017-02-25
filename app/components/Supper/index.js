@@ -18,7 +18,7 @@ export default function Supper(props,context) {
 };
 
 Supper.propTypes = {
-  value: PropTypes.string,
+  value: PropTypes.number,
   nightCount: PropTypes.number,
   guestCount: PropTypes.number,
   active: PropTypes.bool,

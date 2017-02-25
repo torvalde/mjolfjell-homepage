@@ -28,7 +28,7 @@ export default defineMessages({
   },
   info: {
     id: 'app.components.Order.info',
-    defaultMessage: 'Etter å ha motatt din bestilling vil vi kontakte deg for å avklare betaling. Alle prisene er i NOK.'
+    defaultMessage: 'Etter å ha motatt din bestilling vil vi kontakte deg. Alle prisene er i NOK.'
   },
   empty: {
     id: 'app.components.Order.empty',

@@ -14,13 +14,14 @@ const Label = styled.div`
   display: inline-block;
   margin-right: 30px;
   position: relative;
+  box-shadow: 0 2px 2px 0 rgba(0,0,0,.16), 0 0 2px 0 rgba(0,0,0,.12);
   &:hover div {
     display: block;
   }
   @media only screen and (max-width : 768px) {
     width: 100%;
     margin-right: 0;
-        height: 0;
+    height: 0;
     padding-bottom: 75%;
   }
 `;
@@ -38,11 +39,11 @@ const Price = styled.span`
 `;
 
 const Description = styled.div`
-    padding-top: 12px;
-    font-size: 18px;
-    line-height: 22px;
-    margin-right: 30px;
-font-size: 1.5rem;
+  padding-top: 12px;
+  font-size: 18px;
+  line-height: 22px;
+  margin-right: 30px;
+  font-size: 1.5rem;
   line-height: 22px;
   margin: 0;
   max-width: 320px;
@@ -106,7 +107,7 @@ class Product extends React.Component {
 Product.propTypes = {
   active: PropTypes.bool,
   order: PropTypes.string,
-  value: PropTypes.string,
+  value: PropTypes.number,
   img: PropTypes.string,
   price: PropTypes.string,
   totalPrice: PropTypes.number,

@@ -47,7 +47,7 @@ const TopSection = styled.div`
 
 const Title = styled.div`
   margin: 0 380px 0 0;
-  width: calc(100% - 380px);
+  width: calc(100% - 400px);
   height: 300px;
   svg {
       width: 100%;
@@ -75,7 +75,7 @@ const About = styled.div`
     padding: 20px 30px;
     text-align: left;
     margin-top: -90px;
-    box-shadow: 10px 10px 5px 0px rgba(22,22,22,0.5);
+    box-shadow: 0 10px 20px rgba(0,0,0,.19), 0 6px 6px rgba(0,0,0,.23);
     @media only screen and (max-width : 768px) {
       margin-top: 0;
       float: none;        
@@ -307,6 +307,16 @@ export default class HomePage extends React.Component {
               minDate={moment()}
               startDate={this.state.startDate}
               endDate={this.state.endDate}
+              theme={{
+                DaySelected: {
+                  background   : '#083D77',
+                  color: '#ffffff'
+                },
+                DayInRange: {
+                  background   : '#083D77',
+                  color: '#ffffff'
+                }
+              }}
             />
             </DateRangeContainer>
             <DateRangeContainerMobile>
@@ -336,16 +346,6 @@ export default class HomePage extends React.Component {
                 <DormBed nightCount={this.state.nights} guestCount={(this.state.adult+this.state.children)}/>
                 <FamilyRoom nightCount={this.state.nights} guestCount={(this.state.adult+this.state.children)}/>
             </RoomSelector>
-          </ProductSection>
-          <ProductSection>
-            <h2>
-              <FormattedMessage { ...messages.extras } />:
-            </h2>
-            <ExtrasSelector onChange={this.setExtras}>
-              <Towels nightCount={this.state.nights} guestCount={(this.state.adult+this.state.children)}/>
-              <Supper nightCount={this.state.nights} guestCount={(this.state.adult+this.state.children)}/>
-              <Transport nightCount={this.state.nights} guestCount={(this.state.adult+this.state.children)}/>
-            </ExtrasSelector>
           </ProductSection>
           <Order room={this.state.orderRoom} extras={this.state.orderExtras}>
 

@@ -20,7 +20,7 @@ export default function DormBed(props,context) {
 };
 
 DormBed.propTypes = {
-  value: PropTypes.string,
+  value: PropTypes.number,
   nightCount: PropTypes.number,
   guestCount: PropTypes.number,
   active: PropTypes.bool,

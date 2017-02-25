@@ -20,6 +20,6 @@ export default defineMessages({
   },
   visitorInfo: {
     id: 'app.components.HomePage.visitorInfo',
-    defaultMessage: 'For 16 år eller eldre må bestille voksen, fra 3 - 15 år kan du bestille for barn, med barnerabatt',
+    defaultMessage: 'Barn 3 - 15 år i følge med voksen - halv pris. For gruppebestillinger gjelder egne priser.',
   }
 });

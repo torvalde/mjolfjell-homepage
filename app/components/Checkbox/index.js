@@ -12,7 +12,7 @@ const CheckboxIconSvg = styled.svg`
 
 export default function Checkbox(props) {
   const Wrapper = styled.div`
-  color: ${props.active?'blue':props.hover?'black':'#d6d6d6'};
+  color: ${props.active?'black':props.hover?'#545454':'#d6d6d6'};
   background: white;
   margin: 16px;
   border: 2px solid;

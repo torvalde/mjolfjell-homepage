@@ -18,7 +18,7 @@ export default function Transport(props,context) {
 };
 
 Transport.propTypes = {
-  value: PropTypes.string,
+  value: PropTypes.number,
   nightCount: PropTypes.number,
   guestCount: PropTypes.number,
   active: PropTypes.bool,

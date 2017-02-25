@@ -2,7 +2,6 @@
   "app.components.HomePage.accomodation": "Overnatting",
   "app.components.HomePage.extras": "Få mer ut av ditt opphold",
   "app.components.HomePage.header": "This is HomePage components !",
-  "app.components.HomePage.visitorInfo": "For 16 år eller eldre må bestille voksen, fra 3 - 15 år kan du bestille for barn, med 50% rabatt",
   "app.components.NotFoundPage.header": "This is NotFoundPage component !",
   "app.components.Order.email": "Epost",
   "app.components.Order.empty": "Din bestilling er tom, velg overnatting fra seksjonen over.",

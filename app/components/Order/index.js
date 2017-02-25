@@ -63,60 +63,94 @@ const Info = styled.div`
   padding-bottom: 40px;
 `;
 
-export default function Order(props, context) {
-  let sendOrder = function () {
-    emailjs.send("default_service","template_oq3smkkp",{name: "James", notes: "Check this out!"})
-      .then(function(response) {
-        console.log("SUCCESS. status=%d, text=%s", response.status, response.text);
-      }, function(err) {
-        console.log("FAILED. error=", err);
-      });
+
+class Order extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {name: "", email: "", phone: ""};
+  }
+
+  sendOrder = (event) => {
+    event.preventDefault();
+    emailjs.send("default_service", "reservation", {
+      name: this.state.name, email: this.state.email, phone: this.state.phone,
+      order: this.props.room.text, extras: (this.props.extras?this.props.extras.map(extra=>extra.text):[]).join()
+    }).then(function (response) {
+      console.log("SUCCESS. status=%d, text=%s", response.status, response.text);
+    }, function (err) {
+      console.log("FAILED. error=", err);
+    });
   };
 
-  let rows = [];
+  handleNameChange = (event) => {
+    this.setState({name: event.target.value});
+  };
 
-  let total = 0;
+  handleEmailChange = (event) => {
+    this.setState({email: event.target.value});
+  };
 
-  if (props.room) {
-    total += props.room.total;
-    rows.push(<tr key="room"><td>{props.room.text}</td><td>{props.room.total} kr</td></tr>);
+  handlePhoneChange = (event) => {
+    this.setState({phone: event.target.value});
+  };
+
+  render = () => {
+    let rows = [];
+
+    let total = 0;
+
+    if (this.props.room) {
+      total += this.props.room.total;
+      rows.push(<tr key="room">
+        <td>{this.props.room.text}</td>
+        <td>{this.props.room.total} kr</td>
+      </tr>);
+    }
+
+    if (this.props.extras) {
+      this.props.extras.forEach(function (extra, i) {
+        total += extra.total;
+        rows.push(<tr key={i}>
+          <td>{extra.text}</td>
+          <td>{extra.total} kr</td>
+        </tr>);
+      });
+    }
+
+    if (total == 0) {
+      rows.push(<tr key="empty">
+        <td style={{textAlign: 'left'}}><FormattedMessage {...messages.empty}/></td>
+      </tr>);
+    } else {
+      rows.push(<SummaryRow key="total">
+        <td>Total</td>
+        <td>{total} kr</td>
+      </SummaryRow>);
+    }
+
+    return <Wrapper>
+      <h2><FormattedMessage {...messages.title}/></h2>
+      <table>
+        <tbody>
+        {rows}
+        </tbody>
+      </table>
+      <form>
+        <Input label={this.context.intl.formatMessage(messages.name)} floatingLabel={true} required={true} type="text"
+               value={this.state.name} onChange={this.handleNameChange}/>
+        <Input label={this.context.intl.formatMessage(messages.email)} floatingLabel={true} required={true} type="email"
+               value={this.state.email} onChange={this.handleEmailChange}/>
+        <Input label={this.context.intl.formatMessage(messages.phone)} floatingLabel={true} required={true} type="tel"
+               value={this.state.phone} onChange={this.handlePhoneChange}/>
+        <Info>
+          <FormattedMessage {...messages.info}/>
+        </Info>
+        <Center>
+          <Button type="submit" size="large" variant="raised" onClick={this.sendOrder}><FormattedMessage {...messages.send} /></Button>
+        </Center>
+      </form>
+    </Wrapper>;
   }
-
-  if (props.extras) {
-    props.extras.forEach(function(extra, i) {
-      total += extra.total;
-      rows.push(<tr key={i}><td>{extra.text}</td><td>{extra.total} kr</td></tr>);
-    });
-  }
-
-  if (total==0) {
-    rows.push(<tr key="empty"><td style={{textAlign: 'left'}}><FormattedMessage {...messages.empty}/></td></tr>);
-  } else {
-    rows.push(<SummaryRow key="total">
-      <td>Total</td>
-      <td>{total} kr</td>
-    </SummaryRow>);
-  }
-
-  return <Wrapper>
-    <h2><FormattedMessage {...messages.title}/></h2>
-    <table>
-      <tbody>
-      {rows}
-      </tbody>
-    </table>
-    <form>
-      <Input label={context.intl.formatMessage(messages.name)} floatingLabel={true} required={true} type="text"/>
-      <Input label={context.intl.formatMessage(messages.email)} floatingLabel={true} required={true} type="email" />
-      <Input label={context.intl.formatMessage(messages.phone)} floatingLabel={true} required={true} type="tel" />
-      <Info>
-        <FormattedMessage {...messages.info}/>
-      </Info>
-      <Center>
-      <Button size="large" variant="raised" onClick={sendOrder}><FormattedMessage {...messages.send} /></Button>
-      </Center>
-    </form>
-  </Wrapper>;
 }
 
 Order.propTypes = {
@@ -127,3 +161,5 @@ Order.propTypes = {
 Order.contextTypes = {
   intl: React.PropTypes.object
 };
+
+export default Order;
