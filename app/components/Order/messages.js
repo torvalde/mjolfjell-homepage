@@ -8,7 +8,7 @@ import { defineMessages } from 'react-intl';
 export default defineMessages({
   title: {
     id: 'app.components.Order.title',
-    defaultMessage: `Din ordre`,
+    defaultMessage: `Din bestilling`,
   },
   send: {
     id: 'app.components.Order.send',

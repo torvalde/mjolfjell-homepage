@@ -14,9 +14,8 @@ export default function DormBed(props,context) {
   let priceDescription = context.intl.formatMessage(messages.priceDescription,{price:price});
   let order = context.intl.formatMessage(messages.order,{nightCount:props.nightCount,guestCount:props.guestCount});
   let title = context.intl.formatMessage(messages.title);
-  let description = context.intl.formatMessage(messages.description);
   return <Product img={room} totalPrice={calculatedPrice} price={priceDescription} value={props.value}
-                  title={title} description={description} order={order} onClick={props.onClick} active={props.active}/>
+                  title={title} order={order} onClick={props.onClick} active={props.active}/>
 };
 
 DormBed.propTypes = {

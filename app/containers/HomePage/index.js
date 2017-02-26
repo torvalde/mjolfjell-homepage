@@ -112,7 +112,7 @@ const Location = styled.a`
 const LocationInfo = styled.div`
     max-width: 700px;
     margin-left: 360px;
-    font-size: 18px;
+    font-size: 14px;
     font-weight: 300;
         @media only screen and (max-width : 768px) {
               padding: 20px;
@@ -270,17 +270,24 @@ export default class HomePage extends React.Component {
         <FrontPage/>
         <TopSection>
         <About>
-          <p>Øvst i kaledonske Raundalen, blant tusser & troll, ligg Hardangerviddas nordre portal Mjølfjell Ungdomsherberge. Dette paradis paradoks gir sjeldne muligheter for fysisk, mental og åndelig adspredelse. </p>
-          <div>Telefon: <Link href="tel:+4746184070">461 84 070</Link></div>
-          <div>Epost: <Link href="mailtop:post@mjolfjell.no">post@mjolfjell.no</Link></div>
+          <p>Øvst i mystiske Raundalen, blant tusser & troll, ligg Hardangerviddas nordre portal; Mjølfjell Ungdomsherberge. I dette paradoksale paradis legges ingen begrensinger på dine muligheter.</p>
+          <p>«Fysisk, mental og åndelig adspredelse» får du her. Nye ideer, forsterket energi og pågangsmot tar du med deg hjem. </p>
+          <p>Som livet leker med oss, leker vi livet. Bli med, det er aldri for sent.</p>
+          <div>Telefon: <Link href="tel:+4746184070">+47 461 84 070</Link> Epost: <Link href="mailtop:post@mjolfjell.no">post@mjolfjell.no</Link></div>
+          <div>Vipps til tusser og troll: 88932</div>
           <CenteredDiv><Button size="large" color="primary" variant="raised" onClick={this.scrollToOrder}>Bestill rom!</Button></CenteredDiv>
         </About>
           <Title>
-            <svg>
+            <svg title="Mjølfjell Ungdomsherberge">
             <use xlinkHref={mjolfjell}/>
             </svg>
           </Title>
         </TopSection>
+        <Section>
+          <Paragraph>
+            Mjølfjell Ungdomsherberge har 80 sengeplasser til fornuftige priser, ernæringsrik og velsmakende lokal mat, eget kaffebrenneri og en italiensk steinovn hvor du kan steke din egen pizza. Saunaen varmes opp på din forespørsel. Vi serverer ferskt, hjemmelaget brød hver morgen. Lunsj og middag kan bestilles dagen i forveien.
+          </Paragraph>
+        </Section>
           <Section>
             <Location href="https://www.google.com/maps/dir//Mjølfjell+Vandrerhjem,+voss/" target="_blank">
               <img width="300" height="300" src="https://maps.googleapis.com/maps/api/staticmap?center=60.6868453,6.9307285&amp;zoom=8&amp;scale=2&amp;size=300x300&amp;maptype=roadmap&amp;key=AIzaSyCkMf4_0AcLhCN4Sr4qeP2pvCutK0JN3Hk&amp;format=png&amp;visual_refresh=true&amp;markers=size:mid%7Ccolor:0xff0000%7Clabel:1%7C60.6868453,6.9307285" alt="Google Map of Mjølfjell Vandrerhjem, voss"/>
@@ -298,7 +305,7 @@ export default class HomePage extends React.Component {
             <Image/>
           </FullSection>
           <OrderSection id="order">
-            <h2>Ditt opphold:</h2>
+            <h2>Din bestilling:</h2>
             <DateRangeContainer>
             <DateRange
               onInit={this.handleSelect}
@@ -339,9 +346,6 @@ export default class HomePage extends React.Component {
             </VisitorsContainer>
           </OrderSection>
           <ProductSection>
-            <h2>
-              <FormattedMessage {...messages.accomodation} />:
-            </h2>
             <RoomSelector onChange={this.setRoom}>
                 <DormBed nightCount={this.state.nights} guestCount={(this.state.adult+this.state.children)}/>
                 <FamilyRoom nightCount={this.state.nights} guestCount={(this.state.adult+this.state.children)}/>
@@ -350,10 +354,22 @@ export default class HomePage extends React.Component {
           <Order room={this.state.orderRoom} extras={this.state.orderExtras}>
 
           </Order>
+        <Section>
+          <h2>Aktiviteter</h2>
+          <ul>
+            <li>Bar med lokal øl, et knippe gode viner og mulighet for å steke egen steinovnspizza.</li>
+            <li>Større sportsbegivenheter viser på stor skjerm (55 tommer)</li>
+            <li>Biljard, airhockey, diverse spill, sjakk</li>
+            <li>Sauna (8 pax)</li>
+            <li>Fellesrom med peis</li>
+            <li>Bibliotek</li>
+            <li>Kioskvarer</li>
+          </ul>
+        </Section>
         <Footer>
           <Social>
 
-            <li><a href="https://www.facebook.com/MjolfjellHostel" target="_blank"><img src={facebook}/></a></li>
+            <li><a href="https://www.facebook.com/MjolfjellUngdomsherberge" target="_blank"><img src={facebook}/></a></li>
           </Social>
           <Contact>
             <li>Mjølfjell vandrarheim</li>

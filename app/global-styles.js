@@ -12,7 +12,7 @@ injectGlobal`
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
     color: #2e2e2e;
     background: #F1F7EE;
-    font-size:18px;
+    font-size:14px;
     font-weight: 300;
   }
 
