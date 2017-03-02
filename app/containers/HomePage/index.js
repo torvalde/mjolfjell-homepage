@@ -112,7 +112,7 @@ const Location = styled.a`
 const LocationInfo = styled.div`
     max-width: 700px;
     margin-left: 360px;
-    font-size: 14px;
+    font-size: 16px;
     font-weight: 300;
         @media only screen and (max-width : 768px) {
               padding: 20px;
