@@ -12,7 +12,7 @@ export default defineMessages({
   },
   description: {
     id: 'components.DormBed.description',
-    defaultMessage: 'inkluderer gla\'frokost',
+    defaultMessage: 'inkluderer frokost',
   },
   priceDescription: {
     id: 'components.DormBed.priceDescription',

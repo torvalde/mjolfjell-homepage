@@ -31,9 +31,12 @@ function PersonSelector(props) {
   for (let persons = props.min; persons < props.max; persons++) {
     options.push(<option value={persons} key={persons}><FormattedMessage {...person} values={{persons}}/></option>);
   }
+  let onChange = function(event) {
+    props.setCount(parseInt(event.target.value));
+  };
   return (
     <Wrapper>
-      <Selector defaultValue={props.selected||0}>
+      <Selector defaultValue={props.selected||0} onChange={onChange}>
         {options}
       </Selector>
       <DownArrow/>
@@ -51,7 +54,7 @@ PersonSelector.propTypes = {
   max: PropTypes.number,
   selected: PropTypes.number,
   child: PropTypes.bool,
-  onChange: PropTypes.func
+  setCount: PropTypes.func
 };
 
 export default PersonSelector;

@@ -12,7 +12,7 @@ export default defineMessages({
   },
   description: {
     id: 'components.FamilyRoom.description',
-    defaultMessage: 'inkluderer gla\'frokost til 4',
+    defaultMessage: 'inkluderer frokost',
   },
   priceDescription: {
     id: 'components.FamilyRoom.priceDescription',
@@ -20,6 +20,6 @@ export default defineMessages({
   },
   order: {
     id: 'components.FamilyRoom.order',
-    defaultMessage: `{guestCount, number} {guestCount, plural, one {gjest} other {gjester}} for {nightCount, number} {nightCount, plural, one {natt} other {netter}} i et privat 4-mannsrom rom`
+    defaultMessage: `{guestCount, number} {guestCount, plural, one {gjest} other {gjester}} for {nightCount, number} {nightCount, plural, one {natt} other {netter}} i {roomCount, number} {roomCount, plural, one {privat 4-mannsrom} other {private 4-mannsrom}} `
   }
 });

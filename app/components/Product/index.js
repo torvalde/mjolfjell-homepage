@@ -9,8 +9,8 @@ import Wrapper from './Wrapper';
 import Checkbox from 'components/Checkbox';
 
 const Label = styled.div`
-  width: 320px;
-  height: 256px;
+  width: 450px;
+  height: 320px;
   display: inline-block;
   margin-right: 30px;
   position: relative;
@@ -75,12 +75,13 @@ class Product extends React.Component {
   };
 
   onClick = () => {
-    this.props.onClick(this.props.value, this.props.order, this.props.totalPrice);
+    this.props.onClick(this.props.value, this.props.order, this.props.totalPrice, this.props.totalDiscount);
   };
 
   componentDidUpdate = (prevProps) => {
-    if (this.props.value != prevProps.value || this.props.order != prevProps.order || this.props.totalPrice != prevProps.totalPrice) {
-      this.props.onClick(this.props.value, this.props.order, this.props.totalPrice);
+    if (this.props.active && (this.props.value != prevProps.value || this.props.order != prevProps.order ||
+      this.props.totalPrice != prevProps.totalPrice || this.props.totalDiscount != prevProps.totalDiscount)) {
+      this.props.onClick(this.props.value, this.props.order, this.props.totalPrice, this.props.totalDiscount);
     }
   };
 
@@ -111,6 +112,7 @@ Product.propTypes = {
   img: PropTypes.string,
   price: PropTypes.string,
   totalPrice: PropTypes.number,
+  totalDiscount: PropTypes.number,
   title: PropTypes.string,
   description: PropTypes.string,
   onClick: PropTypes.func

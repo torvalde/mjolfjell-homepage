@@ -22,7 +22,7 @@ import RoomSelector from 'components/RoomSelector';
 import ExtrasSelector from 'components/ExtrasSelector';
 import DormBed from 'components/DormBed';
 import FamilyRoom from 'components/FamilyRoom';
-import Towels from 'components/Towels';
+import Sheets from 'components/Sheets';
 import Supper from 'components/Supper';
 import Transport from 'components/Transport';
 
@@ -173,7 +173,7 @@ const VisitorInfo = styled.div`
 const Section = styled.section`
     overflow: hidden;
     padding: 0 20px;
-    margin: 20px 0 160px 0;
+    margin: 20px 0 120px 0;
     h2 {
       font-weight: 400;
       font-size: 24px;
@@ -185,8 +185,40 @@ const Section = styled.section`
     }
 `;
 
+const ActivitySection = styled.section`
+    overflow: hidden;
+    max-width: 650px;
+    width: 100%;
+    margin: 20px auto 120px auto;
+    h2 {
+      text-align: center;
+      font-weight: 400;
+      font-size: 24px;
+      line-height: 32px;
+    }
+    ul {
+      list-style-type: none;
+      li {
+        padding: 0;
+      }
+    }
+    @media only screen and (max-width : 768px) {
+      padding: 0;
+      margin:0;
+    }
+`;
+
 const FullSection = styled.section`
     margin: 20px 0 0 0;
+`;
+
+const TeaserSection = styled.section`
+    font-size:18px;
+    font-style: italic;
+    max-width: 760px;
+    width: 100%;
+    margin: 20px auto 120px auto;
+    padding: 20px 0;
 `;
 
 const ProductSection = styled(Section)`
@@ -199,8 +231,8 @@ const ProductSection = styled(Section)`
 `;
 
 const Footer = styled.footer`
-      padding: 0 20px;
-    margin: 20px 0 80px 0;
+      padding: 20px 20px 80px 20px;
+      background: lightblue;
 `;
 
 const Social = styled.ul`
@@ -244,10 +276,11 @@ export default class HomePage extends React.Component {
       startDate = moment().startOf('day').add(2, 'weeks').isoWeekday(5);
       endDate = moment().startOf('day').add(3, 'weeks').isoWeekday(0);
     }
-    this.state = {startDate, endDate, adult: 2, children: 0, nights: endDate.diff(startDate, 'days')};
+    this.state = {startDate, endDate, adult: 2, child: 0, nights: endDate.diff(startDate, 'days')};
   }
   handleSelect = (date) => {
     this.setState({startDate:date.startDate,endDate:date.endDate,nights:date.endDate.diff(date.startDate, 'days')});
+    this.updateSheets();
   };
   scrollToOrder = () => {
     document.getElementById('order').scrollIntoView();
@@ -255,10 +288,24 @@ export default class HomePage extends React.Component {
   setRoom = (room) => {
     console.log(room);
     this.setState({orderRoom: room});
+    this.updateSheets();
   };
   setExtras = (extras) => {
     console.log(extras);
     this.setState({orderExtras: extras});
+  };
+  updateSheets = () => {
+    this.setExtras([{text: this.context.intl.formatMessage(messages.sheets), total:(100 * (this.state.adult+this.state.child) * (Math.floor(this.state.nights/3)+1))}]);
+  };
+  setAdultCount = (count) => {
+    console.log('adult count '+count);
+    this.setState({adult:count});
+    this.updateSheets();
+  };
+  setChildCount = (count) => {
+    console.log('child count '+count);
+    this.setState({child:count});
+    this.updateSheets();
   };
   /*
    <li><a href=""><img src={twitter}/></a></li>
@@ -270,10 +317,9 @@ export default class HomePage extends React.Component {
         <FrontPage/>
         <TopSection>
         <About>
-          <p>Øvst i mystiske Raundalen, blant tusser & troll, ligg Hardangerviddas nordre portal; Mjølfjell Ungdomsherberge. I dette paradoksale paradis legges ingen begrensinger på dine muligheter.</p>
-          <p>«Fysisk, mental og åndelig adspredelse» får du her. Nye ideer, forsterket energi og pågangsmot tar du med deg hjem. </p>
-          <p>Som livet leker med oss, leker vi livet. Bli med, det er aldri for sent.</p>
-          <div>Telefon: <Link href="tel:+4746184070">+47 461 84 070</Link> Epost: <Link href="mailtop:post@mjolfjell.no">post@mjolfjell.no</Link></div>
+          <p>Øvst i mystiske Raundalen, blant tusser & troll, ligg Hardangerviddas nordre portal; Mjølfjell Ungdomsherberge.</p>
+          <p>Fysisk, mental og åndelig adspredelse får du her. Nye ideer, forsterket energi og pågangsmot tar du med deg hjem. </p>
+          <div><Link href="tel:+4746184070">+47 461 84 070</Link><br/><Link href="mailtop:post@mjolfjell.no">post@mjolfjell.no</Link></div>
           <div>Vipps til tusser og troll: 88932</div>
           <CenteredDiv><Button size="large" color="primary" variant="raised" onClick={this.scrollToOrder}>Bestill rom!</Button></CenteredDiv>
         </About>
@@ -283,11 +329,9 @@ export default class HomePage extends React.Component {
             </svg>
           </Title>
         </TopSection>
-        <Section>
-          <Paragraph>
+        <TeaserSection>
             Mjølfjell Ungdomsherberge har 80 sengeplasser til fornuftige priser, ernæringsrik og velsmakende lokal mat, eget kaffebrenneri og en italiensk steinovn hvor du kan steke din egen pizza. Saunaen varmes opp på din forespørsel. Vi serverer ferskt, hjemmelaget brød hver morgen. Lunsj og middag kan bestilles dagen i forveien.
-          </Paragraph>
-        </Section>
+        </TeaserSection>
           <Section>
             <Location href="https://www.google.com/maps/dir//Mjølfjell+Vandrerhjem,+voss/" target="_blank">
               <img width="300" height="300" src="https://maps.googleapis.com/maps/api/staticmap?center=60.6868453,6.9307285&amp;zoom=8&amp;scale=2&amp;size=300x300&amp;maptype=roadmap&amp;key=AIzaSyCkMf4_0AcLhCN4Sr4qeP2pvCutK0JN3Hk&amp;format=png&amp;visual_refresh=true&amp;markers=size:mid%7Ccolor:0xff0000%7Clabel:1%7C60.6868453,6.9307285" alt="Google Map of Mjølfjell Vandrerhjem, voss"/>
@@ -338,8 +382,8 @@ export default class HomePage extends React.Component {
             </DateRangeContainerMobile>
 
             <VisitorsContainer>
-              <PersonSelector selected={this.state.adult}/>
-              <PersonSelector child={true} selected={this.state.child}/>
+              <PersonSelector selected={this.state.adult} setCount={this.setAdultCount}/>
+              <PersonSelector child={true} selected={this.state.child} setCount={this.setChildCount}/>
               <VisitorInfo>
                 <FormattedMessage {...messages.visitorInfo}/>
               </VisitorInfo>
@@ -347,25 +391,25 @@ export default class HomePage extends React.Component {
           </OrderSection>
           <ProductSection>
             <RoomSelector onChange={this.setRoom}>
-                <DormBed nightCount={this.state.nights} guestCount={(this.state.adult+this.state.children)}/>
-                <FamilyRoom nightCount={this.state.nights} guestCount={(this.state.adult+this.state.children)}/>
+                <DormBed nightCount={this.state.nights} adultGuestCount={this.state.adult} childGuestCount={this.state.child}/>
+                <FamilyRoom nightCount={this.state.nights} adultGuestCount={this.state.adult} childGuestCount={this.state.child}/>
             </RoomSelector>
           </ProductSection>
-          <Order room={this.state.orderRoom} extras={this.state.orderExtras}>
+          <Order room={this.state.orderRoom} extras={this.state.orderExtras} startDate={this.state.startDate} endDate={this.state.endDate}>
 
           </Order>
-        <Section>
+        <ActivitySection>
           <h2>Aktiviteter</h2>
           <ul>
             <li>Bar med lokal øl, et knippe gode viner og mulighet for å steke egen steinovnspizza.</li>
-            <li>Større sportsbegivenheter viser på stor skjerm (55 tommer)</li>
+            <li>Større sportsbegivenheter viser på storskjerm (55 tommer)</li>
             <li>Biljard, airhockey, diverse spill, sjakk</li>
             <li>Sauna (8 pax)</li>
             <li>Fellesrom med peis</li>
             <li>Bibliotek</li>
             <li>Kioskvarer</li>
           </ul>
-        </Section>
+        </ActivitySection>
         <Footer>
           <Social>
 
@@ -378,9 +422,13 @@ export default class HomePage extends React.Component {
             <li>Epost: <a href="mailtop:post@mjolfjell.no">post@mjolfjell.no</a></li>
           </Contact>
           <div style={{clear:'both'}}/>
-          <Copyright href="http://www.hoydalsvik.net/" target="_blank">Copyright for bildene på siden tilhører Odd Høydalsvik</Copyright>
+          <Copyright href="http://www.hoydalsvik.net/" target="_blank">Copyright for enkelte av bildene på siden tilhører Odd Høydalsvik</Copyright>
         </Footer>
       </main>
     );
   }
 }
+
+HomePage.contextTypes = {
+  intl: React.PropTypes.object
+};

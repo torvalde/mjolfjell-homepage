@@ -20,11 +20,12 @@ const Wrapper = styled.div`
       font-size: 24px;
       line-height: 32px;
       text-align: center;
+      margin-bottom: 50px;
     }
     table {
       width: 100%;
       max-width: 500px;
-      margin: 50px auto;
+      margin: 0 auto 50px auto;
       tr td:last-child {
         min-width: 80px;
         text-align:right;
@@ -40,9 +41,9 @@ const Wrapper = styled.div`
         label {
           overflow-x:visible;
         }
-            @media only screen and (max-width : 768px) {
-                    max-width: none;
-            }
+        @media only screen and (max-width : 768px) {
+                max-width: none;
+        }
     }
 `;
 
@@ -63,6 +64,11 @@ const Info = styled.div`
   padding-bottom: 40px;
 `;
 
+const Dates = styled.div`
+      width: 100%;
+      max-width: 500px;
+      margin: 0 auto;
+`;
 
 class Order extends React.Component {
   constructor(props) {
@@ -105,19 +111,25 @@ class Order extends React.Component {
         <td>{this.props.room.text}</td>
         <td>{this.props.room.total} kr</td>
       </tr>);
-    }
-
-    if (this.props.extras) {
-      this.props.extras.forEach(function (extra, i) {
-        total += extra.total;
-        rows.push(<tr key={i}>
-          <td>{extra.text}</td>
-          <td>{extra.total} kr</td>
+      if (this.props.room.discount>0) {
+        total -= this.props.room.discount;
+        rows.push(<tr key="roomDiscount">
+          <td><FormattedMessage {...messages.childDiscount}/></td>
+          <td>-{this.props.room.discount} kr</td>
         </tr>);
-      });
+      }
+      if (this.props.extras) {
+        this.props.extras.forEach(function (extra, i) {
+          total += extra.total;
+          rows.push(<tr key={i}>
+            <td>{extra.text}</td>
+            <td>{extra.total} kr</td>
+          </tr>);
+        });
+      }
     }
 
-    if (total == 0) {
+    if (!this.props.room) {
       rows.push(<tr key="empty">
         <td style={{textAlign: 'left'}}><FormattedMessage {...messages.empty}/></td>
       </tr>);
@@ -128,8 +140,10 @@ class Order extends React.Component {
       </SummaryRow>);
     }
 
+    let dates = (this.props.room?<Dates>{this.props.startDate.locale('nb').format("D. MMMM") + " - " + this.props.endDate.locale('nb').format("D. MMMM")}</Dates>:undefined);
     return <Wrapper>
       <h2><FormattedMessage {...messages.title}/></h2>
+      {dates}
       <table>
         <tbody>
         {rows}
@@ -154,6 +168,8 @@ class Order extends React.Component {
 }
 
 Order.propTypes = {
+  startDate: PropTypes.object,
+  endDate: PropTypes.object,
   room: PropTypes.object,
   extras: PropTypes.array
 };
