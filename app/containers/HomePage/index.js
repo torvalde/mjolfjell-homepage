@@ -112,13 +112,20 @@ const Location = styled.a`
 const LocationInfo = styled.div`
     max-width: 700px;
     margin-left: 360px;
-    font-size: 16px;
+    font-size: 14px;
     font-weight: 300;
-        @media only screen and (max-width : 768px) {
-              padding: 20px;
-    max-width: none;
-    margin-left: 0;
-    width: 100%;
+    h3 {
+      font-size: 14px;
+      margin-bottom: 0;
+    }
+    h3:first-child {
+      margin-top:0;
+    }
+    @media only screen and (max-width : 768px) {
+      padding: 20px;
+      max-width: none;
+      margin-left: 0;
+      width: 100%;
     }
 `;
 
@@ -219,6 +226,10 @@ const TeaserSection = styled.section`
     width: 100%;
     margin: 20px auto 120px auto;
     padding: 20px 0;
+    h3 {
+      font-size: inherit;
+      font-style: normal;
+    }
 `;
 
 const ProductSection = styled(Section)`
@@ -288,14 +299,20 @@ export default class HomePage extends React.Component {
   setRoom = (room) => {
     console.log(room);
     this.setState({orderRoom: room});
-    this.updateSheets();
+    setTimeout(() =>{
+      this.updateSheets();
+    },0);
   };
   setExtras = (extras) => {
     console.log(extras);
     this.setState({orderExtras: extras});
   };
   updateSheets = () => {
-    this.setExtras([{text: this.context.intl.formatMessage(messages.sheets), total:(100 * (this.state.adult+this.state.child) * (Math.floor(this.state.nights/3)+1))}]);
+    if (this.state.orderRoom && this.state.orderRoom.type == 'FamilyRoom') {
+      this.setExtras([{text: this.context.intl.formatMessage(messages.breakfast), total:(150 * (this.state.adult+this.state.child) * this.state.nights)}]);
+    } else {
+      this.setExtras([{text: this.context.intl.formatMessage(messages.sheets), total:(100 * (this.state.adult+this.state.child) * (Math.floor(this.state.nights/3)+1))}]);
+    }
   };
   setAdultCount = (count) => {
     console.log('adult count '+count);
@@ -317,8 +334,8 @@ export default class HomePage extends React.Component {
         <FrontPage/>
         <TopSection>
         <About>
-          <p>Øvst i mystiske Raundalen, blant tusser & troll, ligg Hardangerviddas nordre portal; Mjølfjell Ungdomsherberge.</p>
-          <p>Fysisk, mental og åndelig adspredelse får du her. Nye ideer, forsterket energi og pågangsmot tar du med deg hjem. </p>
+          <p>Øvst i mystiske Raundalen, blant tusser & troll, ligg Hardangerviddas nordre portal; Mjølfjell
+            Ungdomsherberge. I dette paradoksale paradis finnes ingen begrensinger på dine muligheter.</p>
           <div><Link href="tel:+4746184070">+47 461 84 070</Link><br/><Link href="mailtop:post@mjolfjell.no">post@mjolfjell.no</Link></div>
           <div>Vipps til tusser og troll: 88932</div>
           <CenteredDiv><Button size="large" color="primary" variant="raised" onClick={this.scrollToOrder}>Bestill rom!</Button></CenteredDiv>
@@ -330,19 +347,54 @@ export default class HomePage extends React.Component {
           </Title>
         </TopSection>
         <TeaserSection>
-            Mjølfjell Ungdomsherberge har 80 sengeplasser til fornuftige priser, ernæringsrik og velsmakende lokal mat, eget kaffebrenneri og en italiensk steinovn hvor du kan steke din egen pizza. Saunaen varmes opp på din forespørsel. Vi serverer ferskt, hjemmelaget brød hver morgen. Lunsj og middag kan bestilles dagen i forveien.
+          <Paragraph>
+            Mjølfjell Ungdomsherberge har mer enn 100 meget behagelige senger med direkte adgang til den helt unike Hardangervidda
+            Nasjonalpark. Fornuftige priser, enernæringsrik og velsmakende lokal mat, fersk kaffe fra stedets eget brenneri
+            og en ekte italiensk stenovn hvor du kan steke din egen pizza, skaper rammen for ditt opphold her.
+          </Paragraph>
+          <Paragraph>
+          Ungdomsherberget har ett hotell med rom-reservering og ett Vandrerhjem med sengebestilling.
+          </Paragraph>
+          <h3>
+          Hotellet
+          </h3>
+          <Paragraph>
+            Kjøkkenets ferske grovbrød serveres hver morgen sammen med vår hjemmebrente kaffe, utvalgte Hardanger frukt, kjøtt frå Voss, ferskpressede juicer og müsli & yoghurt.
+          </Paragraph>
+          <h3>
+          Vandrerhjemmet
+        </h3>
+          <Paragraph>
+          Stedets vandrerhjem gir alle en mulighet til å overnatte i slike spektakulære omgivelser. Ved tilgjengelighet
+            i spisesalen kan også Vandrerhjemmets gjester nyte godt av kjøkkenets delikatesser.
+          Vandrerhjemmet har egen forpleining med tilgang til sauna og et moderne kjøkken med panorama utsikt over Raundalen.
+            Vandrerhjemmets gjester også anledning til å reserverer både frokost og middag ved tilgjengelighet på hotellet.
+          </Paragraph>
+          <Paragraph>
+            <a href="#order">Gå til rom og sengepriser</a>.
+      </Paragraph>
         </TeaserSection>
           <Section>
             <Location href="https://www.google.com/maps/dir//Mjølfjell+Vandrerhjem,+voss/" target="_blank">
               <img width="300" height="300" src="https://maps.googleapis.com/maps/api/staticmap?center=60.6868453,6.9307285&amp;zoom=8&amp;scale=2&amp;size=300x300&amp;maptype=roadmap&amp;key=AIzaSyCkMf4_0AcLhCN4Sr4qeP2pvCutK0JN3Hk&amp;format=png&amp;visual_refresh=true&amp;markers=size:mid%7Ccolor:0xff0000%7Clabel:1%7C60.6868453,6.9307285" alt="Google Map of Mjølfjell Vandrerhjem, voss"/>
             </Location>
             <LocationInfo>
-              <Paragraph>
-                Mjølfjell er eit flott utgangspunkt for dagsturar i den vestlege fjellheimen. Om du ynskjer å dra oppover kan du ta toget frå vår "eigen" stasjon Ørneberget. På 10 minutter er du på Myrdal. Det er startstaden på ein av dei mest populære turist-attraksjonane i Norge. Du kan gå til fots, sykle, eller ta tog ned den fantastiske Flåmsdalen.
-              </Paragraph>
-              <Paragraph>
-                Du kan reisa til Mjølfjell med bil via Voss, eller med tog. Trykk på kartet for en reisebeskrivelse.
-              </Paragraph>
+              <h3>Ta toget!</h3>
+              <p>
+                Tog direkte fra Bergen til Ørneberget Stasjon (200 meter fra Herberget, eller Mjølfjell Stasjon. Transport fra Mjølfjell Stasjon (20 min på ski, 15 min på sykkel) kan arrangeres til en fastpris på 100  + 50 per person. Må bestilles. Er det flere enkeltbestillinger, deles rabatten på alle.
+              </p>
+              <h3>Kom på ski</h3>
+                <p>
+                Fra Mjølfjell stasjon er det ikke mer enn 20 -30 minutter på ski. Fra Myrdal stasjon er det et par timer med rolig glid.
+                </p>
+              <h3>Med Sykkel</h3>
+              <p>
+                Rallarvegen er en ypperlig transport-åre for sykkel og vandring. Man kan sykle fra Voss, Haugastøl, Ulvik, Myrkdalen eller mang en annen umerket sti.
+              </p>
+              <h3>Med Bil</h3>
+              <p>
+                Fra Bømoen på Voss følger du fylkesveg 307 mot Mjølfjell Ungdomsherberge. Veien er merket helt opp. 35 kilometer fra Voss sentrum.
+              </p>
             </LocationInfo>
           </Section>
           <FullSection>
@@ -399,16 +451,21 @@ export default class HomePage extends React.Component {
 
           </Order>
         <ActivitySection>
-          <h2>Aktiviteter</h2>
-          <ul>
-            <li>Bar med lokal øl, et knippe gode viner og mulighet for å steke egen steinovnspizza.</li>
-            <li>Større sportsbegivenheter viser på storskjerm (55 tommer)</li>
-            <li>Biljard, airhockey, diverse spill, sjakk</li>
-            <li>Sauna (8 pax)</li>
-            <li>Fellesrom med peis</li>
-            <li>Bibliotek</li>
-            <li>Kioskvarer</li>
-          </ul>
+          <Paragraph>
+            Aktivitetsmulighetene er mangfoldige; med din fantasi og vår tilrettelegging er alt mulig. Her er Høyt Under Taket!, så bare spør de sprø!
+          </Paragraph>
+          <Paragraph>
+            I samarbeid med lokale tilbyder i regionen, og spesielt Voss, kan vi arrangere alt fra kurs i elvepadling og havkajakk til overlevelseskurs på Hardangervidda som avsluttes med et gourmetmåltid laget på feltkjøkken i noe Norges villeste natur.
+          </Paragraph>
+            <Paragraph>
+            Guidede randonee turer til legendariske topper som 1212, Mjølfjell, xxx. Med litt drahjelp opp de første 100 kotene, blir avmarsjen behagelig. Raundalselven er verdenskjent for sine fantastiske fall, sterke strømmer og langstrakte opplevelse; den er å regne blant verdens fremste padleelver, og området huser i dag noen av verdens beste ekstremsportutøvere på feltet.
+            </Paragraph>
+          <Paragraph>
+              I peisestuen har vi biljard, en masse gode bøker og et stort utvalg brettspill.
+          </Paragraph>
+          <Paragraph>
+            I baren Tusser & Troll serves lokalt brygg, friske drinker og italienske pizzabunner med et utvalg vestlandske ingredienser. I kiosken selges også flere norske og danske godsaker basert på ekte råvarer fra mindre produsenter. Det skal være godt å være sunn.
+          </Paragraph>
         </ActivitySection>
         <Footer>
           <Social>

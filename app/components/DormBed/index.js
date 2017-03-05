@@ -5,8 +5,8 @@ import Product from 'components/Product';
 import messages from './messages';
 import room from './room.jpg';
 
-const price = 850;
-const childDiscount = 200;
+const price = 550;
+const childDiscount = 220;
 
 const type = DormBed.name;
 
@@ -17,8 +17,11 @@ export default function DormBed(props,context) {
   let order = context.intl.formatMessage(messages.order,{nightCount:props.nightCount,guestCount:(props.adultGuestCount+props.childGuestCount)});
   let title = context.intl.formatMessage(messages.title);
   let description = context.intl.formatMessage(messages.description);
+  let onClick = function(value, order, total, discount) {
+    props.onClick(value, order, total, discount, 'DormBed');
+  };
   return <Product img={room} totalPrice={calculatedPrice} price={priceDescription}
-                  totalDiscount={calculatedDiscount} value={props.value} title={title} order={order} onClick={props.onClick}
+                  totalDiscount={calculatedDiscount} value={props.value} title={title} order={order} onClick={onClick}
                   active={props.active} description={description}/>
 };
 

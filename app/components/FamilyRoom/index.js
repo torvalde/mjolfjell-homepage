@@ -5,8 +5,8 @@ import Product from 'components/Product';
 import messages from './messages';
 import family from './family.jpg';
 
-const price = 2500;
-const childDiscount = 200;
+const price = 1050;
+const childDiscount = 0;
 
 export default function FamilyRoom(props,context) {
   let roomCount = (Math.floor((props.adultGuestCount+props.childGuestCount)/4)+1);
@@ -15,8 +15,11 @@ export default function FamilyRoom(props,context) {
   let order = context.intl.formatMessage(messages.order,{roomCount,nightCount:props.nightCount,guestCount:(props.adultGuestCount+props.childGuestCount)});
   let title = context.intl.formatMessage(messages.title);
   let description = context.intl.formatMessage(messages.description);
+  let onClick = function(value, order, total, discount) {
+    props.onClick(value, order, total, discount, 'FamilyRoom');
+  };
   return <Product img={family} totalPrice={calculatedPrice} price={priceDescription} value={props.value}
-                  title={title} order={order} onClick={props.onClick} active={props.active}
+                  title={title} order={order} onClick={onClick} active={props.active}
                   totalDiscount={childDiscount*props.childGuestCount} description={description}/>
 };
 

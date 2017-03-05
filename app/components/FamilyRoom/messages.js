@@ -8,11 +8,11 @@ import { defineMessages } from 'react-intl';
 export default defineMessages({
   title: {
     id: 'components.FamilyRoom.title',
-    defaultMessage: 'Privat 4-mannsrom',
+    defaultMessage: 'Rom på hotellet (4 senger)',
   },
   description: {
     id: 'components.FamilyRoom.description',
-    defaultMessage: 'inkluderer frokost',
+    defaultMessage: 'En frokostpakke vil bli lagt til, 150 kr pr gjest pr dag.',
   },
   priceDescription: {
     id: 'components.FamilyRoom.priceDescription',

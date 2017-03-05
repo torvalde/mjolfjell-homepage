@@ -20,10 +20,14 @@ export default defineMessages({
   },
   visitorInfo: {
     id: 'components.HomePage.visitorInfo',
-    defaultMessage: 'Barn 3 - 15 år i følge med voksen - halv pris. For gruppebestillinger gjelder egne priser.',
+    defaultMessage: 'For gruppebestillinger gjelder egne priser, kontakt oss.',
   },
   sheets: {
     id: 'components.HomePage.sheets',
     defaultMessage: 'Ekstra for laken og hånkle',
+  },
+  breakfast: {
+    id: 'components.HomePage.breakfast',
+    defaultMessage: 'Ekstra for Frokostpakke',
   }
 });

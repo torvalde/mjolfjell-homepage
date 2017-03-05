@@ -3,6 +3,7 @@
 import React, {PropTypes} from 'react';
 import styled from 'styled-components';
 import Input from 'muicss/lib/react/input';
+import Textarea from 'muicss/lib/react/textarea';
 import Button from 'muicss/lib/react/button';
 import { FormattedMessage } from 'react-intl';
 import messages from './messages';
@@ -78,12 +79,31 @@ class Order extends React.Component {
 
   sendOrder = (event) => {
     event.preventDefault();
+    let total = 0;
+
+    if (this.props.room) {
+      total += this.props.room.total;
+      if (this.props.room.discount>0) {
+        total -= this.props.room.discount;
+      }
+      if (this.props.extras) {
+        this.props.extras.forEach(function (extra, i) {
+          total += extra.total;
+        });
+      }
+    }
+
     emailjs.send("default_service", "reservation", {
       name: this.state.name, email: this.state.email, phone: this.state.phone,
-      order: this.props.room.text, extras: (this.props.extras?this.props.extras.map(extra=>extra.text):[]).join()
+      order: this.props.room.text, extras: (this.props.extras?this.props.extras.map(extra=>extra.text):[]).join(),
+      price: total, date: new Date(), start: this.props.startDate.locale('nb').format("D. MMMM"),
+      end: this.props.endDate.locale('nb').format("D. MMMM"),
+      requests: this.state.requests
     }).then(function (response) {
       console.log("SUCCESS. status=%d, text=%s", response.status, response.text);
+      alert('Din bestilling er sendt.');
     }, function (err) {
+      alert('Det skjedde en feil, kunne ikke sende din  bestilling.');
       console.log("FAILED. error=", err);
     });
   };
@@ -149,18 +169,19 @@ class Order extends React.Component {
         {rows}
         </tbody>
       </table>
-      <form>
+      <form onSubmit={this.sendOrder}>
         <Input label={this.context.intl.formatMessage(messages.name)} floatingLabel={true} required={true} type="text"
                value={this.state.name} onChange={this.handleNameChange}/>
         <Input label={this.context.intl.formatMessage(messages.email)} floatingLabel={true} required={true} type="email"
                value={this.state.email} onChange={this.handleEmailChange}/>
         <Input label={this.context.intl.formatMessage(messages.phone)} floatingLabel={true} required={true} type="tel"
                value={this.state.phone} onChange={this.handlePhoneChange}/>
+        <Textarea label={this.context.intl.formatMessage(messages.requests)} floatingLabel={true}/>
         <Info>
           <FormattedMessage {...messages.info}/>
         </Info>
         <Center>
-          <Button type="submit" size="large" variant="raised" onClick={this.sendOrder}><FormattedMessage {...messages.send} /></Button>
+          <Button type="submit" size="large" variant="raised"><FormattedMessage {...messages.send} /></Button>
         </Center>
       </form>
     </Wrapper>;

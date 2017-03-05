@@ -46,7 +46,7 @@ const Description = styled.div`
   font-size: 1.5rem;
   line-height: 22px;
   margin: 0;
-  max-width: 320px;
+  max-width: 420px;
   @media only screen and (max-width : 768px) {
       max-width: none;
   }

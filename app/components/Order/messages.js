@@ -35,7 +35,11 @@ export default defineMessages({
     defaultMessage: 'Din bestilling er tom, velg overnatting fra seksjonen over.'
   },
   childDiscount: {
-    id: 'components.cOrder.hildDiscount',
+    id: 'components.Order.childDiscount',
     defaultMessage: 'Barnerabatt'
+  },
+  requests: {
+    id: 'components.cOrder.requests',
+    defaultMessage: 'Eventuelle ønsker'
   }
 });
