@@ -8,7 +8,7 @@ import { defineMessages } from 'react-intl';
 export default defineMessages({
   adult: {
     id: 'app.components.PersonSelector.adult',
-    defaultMessage: `{persons, plural, =0 {ingen voksne} one {one adult} other {# voksne}}`,
+    defaultMessage: `{persons, plural, =0 {ingen voksne} one {en voksen} other {# voksne}}`,
   },
   child: {
     id: 'app.components.PersonSelector.child',

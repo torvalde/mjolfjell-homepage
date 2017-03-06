@@ -22,6 +22,9 @@ const Selector = styled.select`
         outline: none;
         border-bottom: 1px solid lightskyblue;
     }
+    option {
+      color: black;
+    }
 `;
 
 

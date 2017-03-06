@@ -98,10 +98,10 @@ class Order extends React.Component {
       order: this.props.room.text, extras: (this.props.extras?this.props.extras.map(extra=>extra.text):[]).join(),
       price: total, date: new Date(), start: this.props.startDate.locale('nb').format("D. MMMM"),
       end: this.props.endDate.locale('nb').format("D. MMMM"),
-      requests: this.state.requests
+      request: this.state.request
     }).then(function (response) {
       console.log("SUCCESS. status=%d, text=%s", response.status, response.text);
-      alert('Din bestilling er sendt.');
+      alert('Din bestilling er sendt, Vi vil sende deg en bekreftelse på mail.');
     }, function (err) {
       alert('Det skjedde en feil, kunne ikke sende din  bestilling.');
       console.log("FAILED. error=", err);
@@ -118,6 +118,10 @@ class Order extends React.Component {
 
   handlePhoneChange = (event) => {
     this.setState({phone: event.target.value});
+  };
+
+  handleRequestChange = (event) => {
+    this.setState({request: event.target.value});
   };
 
   render = () => {
@@ -171,12 +175,13 @@ class Order extends React.Component {
       </table>
       <form onSubmit={this.sendOrder}>
         <Input label={this.context.intl.formatMessage(messages.name)} floatingLabel={true} required={true} type="text"
-               value={this.state.name} onChange={this.handleNameChange}/>
+               value={this.state.name} onChange={this.handleNameChange} name="name" autocomplete="name"/>
         <Input label={this.context.intl.formatMessage(messages.email)} floatingLabel={true} required={true} type="email"
-               value={this.state.email} onChange={this.handleEmailChange}/>
+               value={this.state.email} onChange={this.handleEmailChange} name="email" autocomplete="email"/>
         <Input label={this.context.intl.formatMessage(messages.phone)} floatingLabel={true} required={true} type="tel"
-               value={this.state.phone} onChange={this.handlePhoneChange}/>
-        <Textarea label={this.context.intl.formatMessage(messages.requests)} floatingLabel={true}/>
+               value={this.state.phone} onChange={this.handlePhoneChange} name="phone" autocomplete="tel"/>
+        <Textarea label={this.context.intl.formatMessage(messages.requests)} floatingLabel={true} value={this.state.request}
+                  onChange={this.handleRequestChange}/>
         <Info>
           <FormattedMessage {...messages.info}/>
         </Info>
