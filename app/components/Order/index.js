@@ -74,7 +74,7 @@ const Dates = styled.div`
 class Order extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {name: "", email: "", phone: ""};
+    this.state = {name: "", email: "", phone: "", request:""};
   }
 
   sendOrder = (event) => {
@@ -175,11 +175,11 @@ class Order extends React.Component {
       </table>
       <form onSubmit={this.sendOrder}>
         <Input label={this.context.intl.formatMessage(messages.name)} floatingLabel={true} required={true} type="text"
-               value={this.state.name} onChange={this.handleNameChange} name="name" autocomplete="name"/>
+               value={this.state.name} onChange={this.handleNameChange} name="name" autoComplete="name"/>
         <Input label={this.context.intl.formatMessage(messages.email)} floatingLabel={true} required={true} type="email"
-               value={this.state.email} onChange={this.handleEmailChange} name="email" autocomplete="email"/>
+               value={this.state.email} onChange={this.handleEmailChange} name="email" autoComplete="email"/>
         <Input label={this.context.intl.formatMessage(messages.phone)} floatingLabel={true} required={true} type="tel"
-               value={this.state.phone} onChange={this.handlePhoneChange} name="phone" autocomplete="tel"/>
+               value={this.state.phone} onChange={this.handlePhoneChange} name="phone" autoComplete="tel"/>
         <Textarea label={this.context.intl.formatMessage(messages.requests)} floatingLabel={true} value={this.state.request}
                   onChange={this.handleRequestChange}/>
         <Info>
