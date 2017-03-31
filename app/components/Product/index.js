@@ -15,9 +15,7 @@ const Label = styled.div`
   margin-right: 30px;
   position: relative;
   box-shadow: 0 2px 2px 0 rgba(0,0,0,.16), 0 0 2px 0 rgba(0,0,0,.12);
-  &:hover div {
-    display: block;
-  }
+  cursor: pointer;
   @media only screen and (max-width : 768px) {
     width: 100%;
     margin-right: 0;
@@ -67,11 +65,15 @@ class Product extends React.Component {
   }
 
   mouseOver = () => {
-    this.setState({ hover: true });
+    if (!('ontouchstart' in document.documentElement)) {
+      this.setState({hover: true});
+    }
   };
 
   mouseOut = () => {
-    this.setState({ hover: false });
+    if (!('ontouchstart' in document.documentElement)) {
+      this.setState({hover: false});
+    }
   };
 
   onClick = () => {

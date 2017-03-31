@@ -9,7 +9,7 @@ const price = 1050;
 const childDiscount = 0;
 
 export default function FamilyRoom(props,context) {
-  let roomCount = (Math.floor((props.adultGuestCount+props.childGuestCount)/4)+1);
+  let roomCount = (Math.ceil((props.adultGuestCount+props.childGuestCount)/4));
   let calculatedPrice = price * roomCount * props.nightCount;
   let priceDescription = context.intl.formatMessage(messages.priceDescription,{price:price});
   let order = context.intl.formatMessage(messages.order,{roomCount,nightCount:props.nightCount,guestCount:(props.adultGuestCount+props.childGuestCount)});

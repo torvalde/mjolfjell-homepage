@@ -79,33 +79,45 @@ class Order extends React.Component {
 
   sendOrder = (event) => {
     event.preventDefault();
-    let total = 0;
+    if (!this.props.room) {
+      alert('Du må gå opp på siden og velge om du ønsker seng på vandrehjemmet eller rom på hotellet.');
+    } else {
+      this.setState({sending:true});
+      let total = 0;
 
-    if (this.props.room) {
-      total += this.props.room.total;
-      if (this.props.room.discount>0) {
-        total -= this.props.room.discount;
+      if (this.props.room) {
+        total += this.props.room.total;
+        if (this.props.room.discount > 0) {
+          total -= this.props.room.discount;
+        }
+        if (this.props.extras) {
+          this.props.extras.forEach(function (extra, i) {
+            total += extra.total;
+          });
+        }
       }
-      if (this.props.extras) {
-        this.props.extras.forEach(function (extra, i) {
-          total += extra.total;
-        });
-      }
+
+      emailjs.send("default_service", "reservation", {
+        name: this.state.name,
+        email: this.state.email,
+        phone: this.state.phone,
+        order: this.props.room.text,
+        extras: (this.props.extras ? this.props.extras.map(extra => extra.text) : []).join(),
+        price: total,
+        date: new Date(),
+        start: this.props.startDate.locale('nb').format("D. MMMM"),
+        end: this.props.endDate.locale('nb').format("D. MMMM"),
+        request: this.state.request
+      }).then((response) => {
+        console.log("SUCCESS. status=%d, text=%s", response.status, response.text);
+        alert('Din bestilling er sendt, Vi vil sende deg en bekreftelse på mail.');
+        this.setState({sending:false});
+      }, (err) => {
+        alert('Det skjedde en feil, kunne ikke sende din  bestilling.');
+        this.setState({sending:false});
+        console.log("FAILED. error=", err);
+      });
     }
-
-    emailjs.send("default_service", "reservation", {
-      name: this.state.name, email: this.state.email, phone: this.state.phone,
-      order: this.props.room.text, extras: (this.props.extras?this.props.extras.map(extra=>extra.text):[]).join(),
-      price: total, date: new Date(), start: this.props.startDate.locale('nb').format("D. MMMM"),
-      end: this.props.endDate.locale('nb').format("D. MMMM"),
-      request: this.state.request
-    }).then(function (response) {
-      console.log("SUCCESS. status=%d, text=%s", response.status, response.text);
-      alert('Din bestilling er sendt, Vi vil sende deg en bekreftelse på mail.');
-    }, function (err) {
-      alert('Det skjedde en feil, kunne ikke sende din  bestilling.');
-      console.log("FAILED. error=", err);
-    });
   };
 
   handleNameChange = (event) => {
@@ -186,7 +198,7 @@ class Order extends React.Component {
           <FormattedMessage {...messages.info}/>
         </Info>
         <Center>
-          <Button type="submit" size="large" variant="raised"><FormattedMessage {...messages.send} /></Button>
+          <Button type="submit" size="large" variant="raised" disabled={this.state.sending}><FormattedMessage {...messages.send} /></Button>
         </Center>
       </form>
     </Wrapper>;

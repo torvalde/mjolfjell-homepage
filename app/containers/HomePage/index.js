@@ -210,7 +210,7 @@ const ActivitySection = styled.section`
       }
     }
     @media only screen and (max-width : 768px) {
-      padding: 0;
+      padding: 20px;
       margin:0;
     }
 `;
@@ -229,6 +229,9 @@ const TeaserSection = styled.section`
     h3 {
       font-size: inherit;
       font-style: normal;
+    }
+        @media only screen and (max-width : 768px) {
+    padding: 20px;
     }
 `;
 
@@ -458,7 +461,7 @@ export default class HomePage extends React.Component {
             I samarbeid med lokale tilbyder i regionen, og spesielt Voss, kan vi arrangere alt fra kurs i elvepadling og havkajakk til overlevelseskurs på Hardangervidda som avsluttes med et gourmetmåltid laget på feltkjøkken i noe Norges villeste natur.
           </Paragraph>
             <Paragraph>
-            Guidede randonee turer til legendariske topper som 1212, Mjølfjell, xxx. Med litt drahjelp opp de første 100 kotene, blir avmarsjen behagelig. Raundalselven er verdenskjent for sine fantastiske fall, sterke strømmer og langstrakte opplevelse; den er å regne blant verdens fremste padleelver, og området huser i dag noen av verdens beste ekstremsportutøvere på feltet.
+              Guided tur til legendariske topper som 1212, Horndalsnuten (1461 moh), Mjølfjell (1470 moh)eller kanskje Voss høgste fjell Olvsskavelen (1576 moh) . Med litt drahjelp opp de første 100 kotene, blir avmarsjen vesentlig mer behagelig. Raundalselven rett utenfor døren er verdenskjent for sine fantastiske fall, sterke strømmer og langstrakte opplevelse; den er å regne blant verdens fremste padle-elver, og området huser i dag noen av verdens beste ekstremsportutøvere på feltet.
             </Paragraph>
           <Paragraph>
               I peisestuen har vi biljard, en masse gode bøker og et stort utvalg brettspill.
