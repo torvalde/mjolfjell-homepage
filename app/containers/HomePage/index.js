@@ -472,13 +472,12 @@ export default class HomePage extends React.Component {
         </ActivitySection>
         <Footer>
           <Social>
-
             <li><a href="https://www.facebook.com/MjolfjellUngdomsherberge" target="_blank"><img src={facebook}/></a></li>
           </Social>
           <Contact>
-            <li>Mjølfjell vandrarheim</li>
+            <li>Mjølfjell Ungdomsherberge</li>
             <li>5700 Voss</li>
-            <li>Telefon: <a href="tel:+4746184070">461 84 070</a></li>
+            <li>Telefon: <a href="tel:+4756523150">56 52 31 50</a></li>
             <li>Epost: <a href="mailtop:post@mjolfjell.no">post@mjolfjell.no</a></li>
           </Contact>
           <div style={{clear:'both'}}/>

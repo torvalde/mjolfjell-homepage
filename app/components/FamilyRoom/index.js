@@ -5,7 +5,7 @@ import Product from 'components/Product';
 import messages from './messages';
 import family from './family.jpg';
 
-const price = 1050;
+const price = 1399;
 const childDiscount = 0;
 
 export default function FamilyRoom(props,context) {
