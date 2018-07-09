@@ -339,7 +339,7 @@ export default class HomePage extends React.Component {
         <About>
           <p>Øvst i mystiske Raundalen, blant tusser & troll, ligg Hardangerviddas nordre portal; Mjølfjell
             Ungdomsherberge. I dette paradoksale paradis finnes ingen begrensinger på dine muligheter.</p>
-          <div><Link href="tel:+4746184070">+47 461 84 070</Link><br/><Link href="mailtop:post@mjolfjell.no">post@mjolfjell.no</Link></div>
+          <div><Link href="tel:+4756523150">+47 56 52 31 50</Link><br/><Link href="mailtop:post@mjolfjell.no">post@mjolfjell.no</Link></div>
           <div>Vipps til tusser og troll: 88932</div>
           <CenteredDiv><Button size="large" color="primary" variant="raised" onClick={this.scrollToOrder}>Bestill rom!</Button></CenteredDiv>
         </About>
